@@ -108,6 +108,36 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-8px)" },
         },
+        "blob-1": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "25%": { transform: "translate(50px, 100px) scale(1.1)" },
+          "50%": { transform: "translate(100px, 50px) scale(0.95)" },
+          "75%": { transform: "translate(30px, -50px) scale(1.05)" },
+        },
+        "blob-2": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "25%": { transform: "translate(-80px, 60px) scale(1.15)" },
+          "50%": { transform: "translate(-40px, -80px) scale(0.9)" },
+          "75%": { transform: "translate(60px, 40px) scale(1.08)" },
+        },
+        "blob-3": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "25%": { transform: "translate(70px, -60px) scale(0.92)" },
+          "50%": { transform: "translate(-50px, 80px) scale(1.12)" },
+          "75%": { transform: "translate(-80px, -30px) scale(1.02)" },
+        },
+        "blob-4": {
+          "0%, 100%": { transform: "translate(-50%, -50%) scale(1)" },
+          "33%": { transform: "translate(-45%, -55%) scale(1.18)" },
+          "66%": { transform: "translate(-55%, -45%) scale(0.88)" },
+        },
+        "blob-5": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "20%": { transform: "translate(-60px, -40px) scale(1.1)" },
+          "40%": { transform: "translate(40px, -70px) scale(0.95)" },
+          "60%": { transform: "translate(80px, 30px) scale(1.08)" },
+          "80%": { transform: "translate(-30px, 60px) scale(0.92)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -117,6 +147,11 @@ export default {
         "slide-in-right": "slide-in-right 0.4s ease-out forwards",
         "scale-in": "scale-in 0.3s ease-out forwards",
         "bounce-slow": "bounce-slow 2s ease-in-out infinite",
+        "blob-1": "blob-1 25s ease-in-out infinite",
+        "blob-2": "blob-2 30s ease-in-out infinite",
+        "blob-3": "blob-3 28s ease-in-out infinite",
+        "blob-4": "blob-4 22s ease-in-out infinite",
+        "blob-5": "blob-5 35s ease-in-out infinite",
       },
       boxShadow: {
         "coral-glow": "0 8px 24px hsl(354 93% 60% / 0.3)",

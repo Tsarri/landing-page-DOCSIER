@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/Navigation";
+import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { CostSection } from "@/components/sections/CostSection";
 import { SolutionSection } from "@/components/sections/SolutionSection";
@@ -8,7 +9,8 @@ import { Footer } from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      <AnimatedBackground />
       <Navigation />
       <main>
         <HeroSection />
