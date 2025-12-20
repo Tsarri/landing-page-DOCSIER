@@ -108,35 +108,38 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-8px)" },
         },
-        "blob-1": {
-          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
-          "25%": { transform: "translate(50px, 100px) scale(1.1)" },
-          "50%": { transform: "translate(100px, 50px) scale(0.95)" },
-          "75%": { transform: "translate(30px, -50px) scale(1.05)" },
+        "radar-pulse": {
+          "0%": { 
+            transform: "translate(-50%, -50%) scale(1)", 
+            opacity: "0.6" 
+          },
+          "100%": { 
+            transform: "translate(-50%, -50%) scale(25)", 
+            opacity: "0" 
+          },
         },
-        "blob-2": {
-          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
-          "25%": { transform: "translate(-80px, 60px) scale(1.15)" },
-          "50%": { transform: "translate(-40px, -80px) scale(0.9)" },
-          "75%": { transform: "translate(60px, 40px) scale(1.08)" },
+        "radar-pulse-slow": {
+          "0%": { 
+            transform: "translate(-50%, -50%) scale(1)", 
+            opacity: "0.4" 
+          },
+          "100%": { 
+            transform: "translate(-50%, -50%) scale(20)", 
+            opacity: "0" 
+          },
         },
-        "blob-3": {
-          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
-          "25%": { transform: "translate(70px, -60px) scale(0.92)" },
-          "50%": { transform: "translate(-50px, 80px) scale(1.12)" },
-          "75%": { transform: "translate(-80px, -30px) scale(1.02)" },
-        },
-        "blob-4": {
-          "0%, 100%": { transform: "translate(-50%, -50%) scale(1)" },
-          "33%": { transform: "translate(-45%, -55%) scale(1.18)" },
-          "66%": { transform: "translate(-55%, -45%) scale(0.88)" },
-        },
-        "blob-5": {
-          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
-          "20%": { transform: "translate(-60px, -40px) scale(1.1)" },
-          "40%": { transform: "translate(40px, -70px) scale(0.95)" },
-          "60%": { transform: "translate(80px, 30px) scale(1.08)" },
-          "80%": { transform: "translate(-30px, 60px) scale(0.92)" },
+        "wave-horizontal": {
+          "0%": { 
+            transform: "translateX(-100%) scaleY(1)",
+            opacity: "0"
+          },
+          "50%": {
+            opacity: "1"
+          },
+          "100%": { 
+            transform: "translateX(100%) scaleY(1)",
+            opacity: "0"
+          },
         },
       },
       animation: {
@@ -147,11 +150,9 @@ export default {
         "slide-in-right": "slide-in-right 0.4s ease-out forwards",
         "scale-in": "scale-in 0.3s ease-out forwards",
         "bounce-slow": "bounce-slow 2s ease-in-out infinite",
-        "blob-1": "blob-1 25s ease-in-out infinite",
-        "blob-2": "blob-2 30s ease-in-out infinite",
-        "blob-3": "blob-3 28s ease-in-out infinite",
-        "blob-4": "blob-4 22s ease-in-out infinite",
-        "blob-5": "blob-5 35s ease-in-out infinite",
+        "radar-pulse": "radar-pulse 12s ease-out infinite",
+        "radar-pulse-slow": "radar-pulse-slow 15s ease-out infinite",
+        "wave-horizontal": "wave-horizontal 8s ease-in-out infinite",
       },
       boxShadow: {
         "coral-glow": "0 8px 24px hsl(354 93% 60% / 0.3)",
