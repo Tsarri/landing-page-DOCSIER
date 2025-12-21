@@ -22,17 +22,17 @@ export const Navigation = () => {
             {/* Navigation Tabs */}
             <div className="flex items-center gap-2">
               <Button
-                variant="nav"
-                onClick={() => setNosotrosOpen(true)}
-              >
-                Nosotros
-              </Button>
-              <Button
                 variant="secondary"
                 size="sm"
                 onClick={() => setDiagnosticoOpen(true)}
               >
                 Auto-Diagnóstico
+              </Button>
+              <Button
+                variant="nav"
+                onClick={() => setNosotrosOpen(true)}
+              >
+                Nosotros
               </Button>
             </div>
           </div>
