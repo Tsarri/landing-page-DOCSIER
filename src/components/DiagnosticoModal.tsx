@@ -1,10 +1,10 @@
 import { useState } from "react";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, AlertTriangle, CheckCircle, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -117,13 +117,13 @@ export const DiagnosticoModal = ({ open, onOpenChange }: DiagnosticoModalProps) 
   };
 
   return (
-    <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[500px] bg-background border-brand-purple p-0 overflow-hidden">
+    <Sheet open={open} onOpenChange={handleClose}>
+      <SheetContent side="left" className="w-full sm:max-w-[450px] bg-background border-brand-purple p-0 overflow-hidden">
         {/* Header */}
-        <DialogHeader className="p-6 pb-4 border-b border-muted/20">
-          <DialogTitle className="text-xl font-semibold text-foreground">
+        <SheetHeader className="p-6 pb-4 border-b border-muted/20">
+          <SheetTitle className="text-xl font-semibold text-foreground">
             Diagnóstico de Plazos
-          </DialogTitle>
+          </SheetTitle>
           {!showResults && (
             <div className="flex items-center gap-2 mt-3">
               {questions.map((_, index) => (
@@ -137,10 +137,10 @@ export const DiagnosticoModal = ({ open, onOpenChange }: DiagnosticoModalProps) 
               ))}
             </div>
           )}
-        </DialogHeader>
+        </SheetHeader>
 
         {/* Content */}
-        <div className="p-6">
+        <div className="p-6 overflow-y-auto h-[calc(100vh-100px)]">
           {!showResults ? (
             <div className="space-y-6 animate-fade-in" key={currentStep}>
               <p className="text-sm text-muted-foreground">
@@ -239,7 +239,7 @@ export const DiagnosticoModal = ({ open, onOpenChange }: DiagnosticoModalProps) 
             </div>
           )}
         </div>
-      </DialogContent>
-    </Dialog>
+      </SheetContent>
+    </Sheet>
   );
 };

@@ -1,9 +1,9 @@
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { Mail, Phone, MapPin } from "lucide-react";
 
@@ -14,15 +14,15 @@ interface NosotrosModalProps {
 
 export const NosotrosModal = ({ open, onOpenChange }: NosotrosModalProps) => {
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[600px] bg-bg-elevated border-brand-purple p-8 sm:p-12">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-foreground">
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetContent side="right" className="w-full sm:max-w-[450px] bg-bg-elevated border-brand-purple p-8 sm:p-10 overflow-y-auto">
+        <SheetHeader>
+          <SheetTitle className="text-2xl font-bold text-foreground">
             Quiénes Somos
-          </DialogTitle>
-        </DialogHeader>
+          </SheetTitle>
+        </SheetHeader>
 
-        <div className="space-y-6 mt-4">
+        <div className="space-y-6 mt-6">
           <p className="text-muted-foreground leading-relaxed">
             DOCSIER fue creado por abogados panameños que perdieron casos por plazos olvidados. 
             Construimos la herramienta que hubiéramos querido tener.
@@ -90,7 +90,7 @@ export const NosotrosModal = ({ open, onOpenChange }: NosotrosModalProps) => {
             </a>
           </div>
         </div>
-      </DialogContent>
-    </Dialog>
+      </SheetContent>
+    </Sheet>
   );
 };
