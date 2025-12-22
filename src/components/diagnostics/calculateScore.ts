@@ -1,4 +1,4 @@
-import { AssessmentData, AssessmentScore, Recommendation } from "./types";
+import { AssessmentData, AssessmentScore, Recommendation, CalculationBreakdown } from "./types";
 
 export const calculateScore = (data: AssessmentData): AssessmentScore => {
   console.log("calculateScore input data:", JSON.stringify(data, null, 2));
@@ -22,67 +22,73 @@ export const calculateScore = (data: AssessmentData): AssessmentScore => {
   if (!data.repetitiveTasksPercentage) unansweredPenalty += 0.4;
   if (data.growthBlockers.length === 0) unansweredPenalty += 0.3;
 
-  baseScore -= unansweredPenalty;
-
   // Capacity factors (add points only if answered)
+  let capacityBonus = 0;
   if (incomeStreamsCount > 1) {
-    baseScore += Math.min(1.5, (incomeStreamsCount - 1) * 0.5);
+    capacityBonus += Math.min(1.5, (incomeStreamsCount - 1) * 0.5);
   }
   if (countriesPerYear > 1) {
-    baseScore += Math.min(1.0, (countriesPerYear - 1) * 0.5);
+    capacityBonus += Math.min(1.0, (countriesPerYear - 1) * 0.5);
   }
   if (activeClients > 5) {
-    baseScore += Math.min(0.5, (activeClients - 5) * 0.1);
+    capacityBonus += Math.min(0.5, (activeClients - 5) * 0.1);
   }
 
   // Infrastructure factors (subtract points for problems)
+  let infrastructurePenalty = 0;
   if (data.adminHoursPerWeek === '15+') {
-    baseScore -= 1.0;
+    infrastructurePenalty += 1.0;
   } else if (data.adminHoursPerWeek === '10-15') {
-    baseScore -= 0.5;
+    infrastructurePenalty += 0.5;
   }
   
   if (toolsCount > 3) {
-    baseScore -= Math.min(1.5, (toolsCount - 3) * 0.5);
+    infrastructurePenalty += Math.min(1.5, (toolsCount - 3) * 0.5);
   }
   
   if (data.missedDeadlines === 'often' || data.missedDeadlines === 'always') {
-    baseScore -= 1.0;
+    infrastructurePenalty += 1.0;
   } else if (data.missedDeadlines === 'sometimes') {
-    baseScore -= 0.5;
+    infrastructurePenalty += 0.5;
   }
 
-  // New questions impact
+  // New questions impact (efficiency penalty)
+  let efficiencyPenalty = 0;
   if (data.hoursLostToDocumentation === '10+') {
-    baseScore -= 1.5;
+    efficiencyPenalty += 1.5;
   } else if (data.hoursLostToDocumentation === '5-10') {
-    baseScore -= 1.0;
+    efficiencyPenalty += 1.0;
   } else if (data.hoursLostToDocumentation === '2-5') {
-    baseScore -= 0.5;
+    efficiencyPenalty += 0.5;
   }
 
   if (data.repetitiveTasksPercentage === '40%+') {
-    baseScore -= 1.5;
+    efficiencyPenalty += 1.5;
   } else if (data.repetitiveTasksPercentage === '30-40%') {
-    baseScore -= 1.0;
+    efficiencyPenalty += 1.0;
   } else if (data.repetitiveTasksPercentage === '20-30%') {
-    baseScore -= 0.5;
+    efficiencyPenalty += 0.5;
   }
 
   // Growth blockers impact
+  let growthPenalty = 0;
   if (data.growthBlockers.length >= 3) {
-    baseScore -= 1.0;
+    growthPenalty = 1.0;
   } else if (data.growthBlockers.length >= 2) {
-    baseScore -= 0.5;
+    growthPenalty = 0.5;
   }
 
   // Optimism factor
+  let optimismBonus = 0;
   if (incomeStreamsCount >= 4) {
-    baseScore += 0.5;
+    optimismBonus = 0.5;
   }
 
+  // Calculate final score
+  const calculatedScore = baseScore - unansweredPenalty + capacityBonus - infrastructurePenalty - efficiencyPenalty - growthPenalty + optimismBonus;
+
   // Clamp to 1-10
-  const total = Math.max(1, Math.min(10, baseScore));
+  const total = Math.max(1, Math.min(10, calculatedScore));
 
   // Calculate component scores
   const adminBurden = calculateAdminBurden(data);
@@ -107,7 +113,25 @@ export const calculateScore = (data: AssessmentData): AssessmentScore => {
   const docHours = getDocHours(data.hoursLostToDocumentation);
   const hourlyRate = parseInt(data.hourlyRate) || 75; // Default to $75 if not provided
   const totalLostHoursPerWeek = adminHours + docHours;
-  const timeValue = totalLostHoursPerWeek * 52 * hourlyRate; // Annual cost in USD
+  const weeksPerYear = 52;
+  const timeValue = totalLostHoursPerWeek * weeksPerYear * hourlyRate; // Annual cost in USD
+
+  // Build breakdown for visualization
+  const breakdown: CalculationBreakdown = {
+    baseScore,
+    unansweredPenalty,
+    capacityBonus,
+    infrastructurePenalty,
+    efficiencyPenalty,
+    growthPenalty,
+    optimismBonus,
+    adminHoursPerWeek: adminHours,
+    docHoursPerWeek: docHours,
+    totalLostHoursPerWeek,
+    hourlyRate,
+    weeksPerYear,
+    annualCost: timeValue,
+  };
 
   // Generate recommendations
   const recommendations = generateRecommendations(data, total);
@@ -121,6 +145,7 @@ export const calculateScore = (data: AssessmentData): AssessmentScore => {
     interpretation,
     timeValue,
     recommendations,
+    breakdown,
   };
   
   console.log("calculateScore output:", {
@@ -129,7 +154,8 @@ export const calculateScore = (data: AssessmentData): AssessmentScore => {
     infrastructureMaturity,
     taxCompliance,
     capacityCeiling,
-    interpretation
+    interpretation,
+    breakdown
   });
   
   return result;
