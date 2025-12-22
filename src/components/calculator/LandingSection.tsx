@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Calculator, TrendingDown, Clock, DollarSign } from "lucide-react";
+import { Calculator } from "lucide-react";
 
 interface LandingSectionProps {
   onStart: () => void;
@@ -8,59 +7,39 @@ interface LandingSectionProps {
 
 export function LandingSection({ onStart }: LandingSectionProps) {
   return (
-    <div className="space-y-8 text-center">
+    <div className="space-y-8 text-center py-8">
       <div className="space-y-4">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10">
-          <Calculator className="w-8 h-8 text-primary" />
+        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary">
+          <Calculator className="w-10 h-10 text-primary-foreground" />
         </div>
-        <h1 className="text-3xl md:text-4xl font-bold text-foreground">
-          Calculadora de Rentabilidad
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground italic">
+          ¿Cuánto Te Cuesta Realmente Cada Cliente?
         </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Descubre cuánto te está costando realmente el overhead administrativo 
-          y cómo impacta tu ganancia por hora.
+        <p className="text-base text-muted-foreground">
+          Descubre la rentabilidad de tu firma
         </p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-4 max-w-3xl mx-auto">
-        <Card className="bg-card/50 border-border/50">
-          <CardContent className="pt-6 text-center space-y-2">
-            <TrendingDown className="w-8 h-8 mx-auto text-destructive" />
-            <h3 className="font-semibold text-foreground">Costo Oculto</h3>
-            <p className="text-sm text-muted-foreground">
-              Calcula el verdadero costo de tu carga administrativa
-            </p>
-          </CardContent>
-        </Card>
+      <div className="grid grid-cols-3 gap-3 max-w-2xl mx-auto">
+        <div className="bg-muted/50 rounded-lg p-4 text-center">
+          <p className="text-xl md:text-2xl font-bold text-primary">3 min</p>
+          <p className="text-sm text-muted-foreground">Para completar</p>
+        </div>
 
-        <Card className="bg-card/50 border-border/50">
-          <CardContent className="pt-6 text-center space-y-2">
-            <Clock className="w-8 h-8 mx-auto text-warning" />
-            <h3 className="font-semibold text-foreground">Tiempo Perdido</h3>
-            <p className="text-sm text-muted-foreground">
-              Identifica cuántas horas gastas en tareas no facturables
-            </p>
-          </CardContent>
-        </Card>
+        <div className="bg-muted/50 rounded-lg p-4 text-center">
+          <p className="text-xl md:text-2xl font-bold text-primary">Autodiagnóstico</p>
+          <p className="text-sm text-muted-foreground">Personalizado</p>
+        </div>
 
-        <Card className="bg-card/50 border-border/50">
-          <CardContent className="pt-6 text-center space-y-2">
-            <DollarSign className="w-8 h-8 mx-auto text-success" />
-            <h3 className="font-semibold text-foreground">Ganancia Real</h3>
-            <p className="text-sm text-muted-foreground">
-              Descubre tu verdadera tarifa horaria efectiva
-            </p>
-          </CardContent>
-        </Card>
+        <div className="bg-muted/50 rounded-lg p-4 text-center">
+          <p className="text-xl md:text-2xl font-bold text-primary">PDF</p>
+          <p className="text-sm text-muted-foreground">Gratis</p>
+        </div>
       </div>
 
-      <Button size="lg" onClick={onStart} className="px-8">
-        Comenzar Análisis
+      <Button size="lg" onClick={onStart} className="w-full max-w-2xl mx-auto py-6 text-lg font-semibold">
+        Calcular Mi Profitabilidad
       </Button>
-
-      <p className="text-xs text-muted-foreground">
-        Solo toma 2 minutos • Resultados inmediatos • 100% confidencial
-      </p>
     </div>
   );
 }
