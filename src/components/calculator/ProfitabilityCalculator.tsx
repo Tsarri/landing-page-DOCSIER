@@ -4,12 +4,12 @@ import { ArrowLeft } from "lucide-react";
 import { BaselineMetrics as BaselineMetricsType } from "@/lib/calculatorLogic";
 import { LandingSection } from "./LandingSection";
 import { BaselineMetrics } from "./BaselineMetrics";
-import { ClientScenarios } from "./ClientScenarios";
+import { CalculationBreakdown } from "./CalculationBreakdown";
 import { AnnualImpact } from "./AnnualImpact";
 import { RecognitionMoment } from "./RecognitionMoment";
 import { ResultsPage } from "./ResultsPage";
 
-type Step = 'landing' | 'metrics' | 'scenarios' | 'impact' | 'recognition' | 'results';
+type Step = 'landing' | 'metrics' | 'breakdown' | 'impact' | 'recognition' | 'results';
 
 export function ProfitabilityCalculator() {
   const [step, setStep] = useState<Step>('landing');
@@ -18,11 +18,11 @@ export function ProfitabilityCalculator() {
 
   const handleMetricsSubmit = (newMetrics: BaselineMetricsType) => {
     setMetrics(newMetrics);
-    setStep('scenarios');
+    setStep('breakdown');
   };
 
   const handleBack = () => {
-    const stepOrder: Step[] = ['landing', 'metrics', 'scenarios', 'impact', 'recognition', 'results'];
+    const stepOrder: Step[] = ['landing', 'metrics', 'breakdown', 'impact', 'recognition', 'results'];
     const currentIndex = stepOrder.indexOf(step);
     if (currentIndex > 0) {
       setStep(stepOrder[currentIndex - 1]);
@@ -30,7 +30,7 @@ export function ProfitabilityCalculator() {
   };
 
   const handleNext = () => {
-    const stepOrder: Step[] = ['landing', 'metrics', 'scenarios', 'impact', 'recognition', 'results'];
+    const stepOrder: Step[] = ['landing', 'metrics', 'breakdown', 'impact', 'recognition', 'results'];
     const currentIndex = stepOrder.indexOf(step);
     if (currentIndex < stepOrder.length - 1) {
       setStep(stepOrder[currentIndex + 1]);
@@ -48,8 +48,8 @@ export function ProfitabilityCalculator() {
             initialMetrics={metrics || undefined}
           />
         );
-      case 'scenarios':
-        return metrics ? <ClientScenarios metrics={metrics} /> : null;
+      case 'breakdown':
+        return metrics ? <CalculationBreakdown metrics={metrics} /> : null;
       case 'impact':
         return metrics ? <AnnualImpact metrics={metrics} /> : null;
       case 'recognition':
@@ -70,7 +70,7 @@ export function ProfitabilityCalculator() {
   };
 
   const showNavigation = step !== 'landing' && step !== 'results';
-  const showContinue = step === 'scenarios' || step === 'impact';
+  const showContinue = step === 'breakdown' || step === 'impact';
 
   return (
     <div className="min-h-screen bg-background">
