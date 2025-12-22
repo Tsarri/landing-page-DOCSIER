@@ -28,7 +28,7 @@ export const SolutionSection = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Solution: Right-center primary radar */}
         <div className="absolute top-[40%] right-[10%]">
-          {[...Array(6)].map((_, i) => (
+          {[...Array(4)].map((_, i) => (
             <div
               key={`rc-pulse-${i}`}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-sage/20 animate-radar-pulse"
@@ -43,7 +43,7 @@ export const SolutionSection = () => {
 
         {/* Solution: Top-left secondary radar */}
         <div className="absolute top-[15%] left-[25%]">
-          {[...Array(4)].map((_, i) => (
+          {[...Array(3)].map((_, i) => (
             <div
               key={`tl-pulse-${i}`}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-blue-gray/20 animate-radar-pulse-slow"
@@ -58,7 +58,7 @@ export const SolutionSection = () => {
 
         {/* Solution: Bottom-left tertiary radar */}
         <div className="absolute bottom-[20%] left-[10%]">
-          {[...Array(4)].map((_, i) => (
+          {[...Array(3)].map((_, i) => (
             <div
               key={`bl-pulse-${i}`}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-sage/15 animate-radar-pulse-slow"

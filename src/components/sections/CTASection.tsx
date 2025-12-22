@@ -13,7 +13,7 @@ export const CTASection = () => {
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* CTA: Left-center primary radar */}
           <div className="absolute top-[50%] left-[8%]">
-            {[...Array(6)].map((_, i) => (
+            {[...Array(4)].map((_, i) => (
               <div
                 key={`lc-pulse-${i}`}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-sage/20 animate-radar-pulse"
@@ -28,7 +28,7 @@ export const CTASection = () => {
 
           {/* CTA: Top-right secondary radar */}
           <div className="absolute top-[20%] right-[25%]">
-            {[...Array(4)].map((_, i) => (
+            {[...Array(3)].map((_, i) => (
               <div
                 key={`tr-pulse-${i}`}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-blue-gray/20 animate-radar-pulse-slow"
@@ -43,7 +43,7 @@ export const CTASection = () => {
 
           {/* CTA: Bottom-right tertiary radar */}
           <div className="absolute bottom-[25%] right-[12%]">
-            {[...Array(4)].map((_, i) => (
+            {[...Array(3)].map((_, i) => (
               <div
                 key={`br-pulse-${i}`}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-sage/15 animate-radar-pulse-slow"
