@@ -14,7 +14,7 @@ export const HeroSection = () => {
           {[...Array(3)].map((_, i) => (
             <div
               key={`tl-pulse-${i}`}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-sage/15 animate-radar-pulse"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-sage/8 animate-radar-pulse"
               style={{
                 animationDelay: `${i * 4}s`,
                 width: '80px',
@@ -29,7 +29,7 @@ export const HeroSection = () => {
           {[...Array(2)].map((_, i) => (
             <div
               key={`br-pulse-${i}`}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-blue-gray/15 animate-radar-pulse-slow"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-blue-gray/8 animate-radar-pulse-slow"
               style={{
                 animationDelay: `${i * 5 + 2}s`,
                 width: '60px',
@@ -43,7 +43,7 @@ export const HeroSection = () => {
         {[...Array(3)].map((_, i) => (
           <div
             key={`wave-${i}`}
-            className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-blue-gray/8 to-transparent animate-wave-horizontal"
+            className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-blue-gray/5 to-transparent animate-wave-horizontal"
             style={{
               top: `${25 + i * 25}%`,
               animationDelay: `${i * 2.5}s`,
