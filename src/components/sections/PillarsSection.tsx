@@ -82,7 +82,7 @@ export const PillarsSection = () => {
             </div>
             
             <p className="text-lg font-medium text-brand-coral">
-              Zero entrada de datos manual. Tu firma opera como siempre. Solo que sin el peso.
+              Zero entrada de datos manual. Tu firma de siempre sin peso muerto.
             </p>
           </div>
 
