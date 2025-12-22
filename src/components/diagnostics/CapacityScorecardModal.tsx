@@ -304,7 +304,7 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
                       </div>
 
                       <div>
-                        <Label>¿Cuántas herramientas/plataformas diferentes usas?</Label>
+                        <Label>¿Cuántas herramientas/plataformas en tu negocio (base de datos, correos, facturas, administrar tu firma) usas?</Label>
                         <Input
                           type="number"
                           min="1"
