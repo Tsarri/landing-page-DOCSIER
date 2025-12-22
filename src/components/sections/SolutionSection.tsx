@@ -1,6 +1,12 @@
-import { Mail, Calendar, FolderOpen } from "lucide-react";
+import { useState } from "react";
+import { Mail, Calendar, FolderOpen, BarChart3, Calculator } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { CapacityScorecardModal, LeakageCalculatorModal } from "@/components/diagnostics";
 
 export const SolutionSection = () => {
+  const [capacityOpen, setCapacityOpen] = useState(false);
+  const [leakageOpen, setLeakageOpen] = useState(false);
+
   const features = [
     {
       icon: Mail,
@@ -111,8 +117,38 @@ export const SolutionSection = () => {
               </div>
             ))}
           </div>
+
+          {/* Auto-diagnóstico Tools */}
+          <div className="pt-8 border-t border-muted/20">
+            <h3 className="text-xl font-semibold text-foreground mb-4 text-center">
+              Auto-diagnóstico gratuito
+            </h3>
+            <div className="grid sm:grid-cols-2 gap-4 max-w-xl mx-auto">
+              <Button
+                onClick={() => setCapacityOpen(true)}
+                variant="outline"
+                className="h-auto py-4 px-6 flex flex-col items-center gap-2 hover:border-brand-sage/40 hover:bg-brand-sage/5"
+              >
+                <BarChart3 className="w-6 h-6 text-brand-sage" />
+                <span className="font-medium">Índice de Capacidad Operacional</span>
+                <span className="text-xs text-muted-foreground">3-4 min</span>
+              </Button>
+              <Button
+                onClick={() => setLeakageOpen(true)}
+                variant="outline"
+                className="h-auto py-4 px-6 flex flex-col items-center gap-2 hover:border-brand-coral/40 hover:bg-brand-coral/5"
+              >
+                <Calculator className="w-6 h-6 text-brand-coral" />
+                <span className="font-medium">Calculadora de Pérdidas</span>
+                <span className="text-xs text-muted-foreground">3 min</span>
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
+
+      <CapacityScorecardModal open={capacityOpen} onOpenChange={setCapacityOpen} />
+      <LeakageCalculatorModal open={leakageOpen} onOpenChange={setLeakageOpen} />
     </section>
   );
 };
