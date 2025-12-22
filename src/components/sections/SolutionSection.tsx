@@ -28,27 +28,12 @@ export const SolutionSection = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Solution: Right-center primary radar */}
         <div className="absolute top-[40%] right-[10%]">
-          {[...Array(4)].map((_, i) => (
-            <div
-              key={`rc-pulse-${i}`}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-sage/20 animate-radar-pulse"
-              style={{
-                animationDelay: `${i * 2}s`,
-                width: '100px',
-                height: '100px',
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Solution: Top-left secondary radar */}
-        <div className="absolute top-[15%] left-[25%]">
           {[...Array(3)].map((_, i) => (
             <div
-              key={`tl-pulse-${i}`}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-blue-gray/20 animate-radar-pulse-slow"
+              key={`rc-pulse-${i}`}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-sage/15 animate-radar-pulse"
               style={{
-                animationDelay: `${i * 3}s`,
+                animationDelay: `${i * 4}s`,
                 width: '80px',
                 height: '80px',
               }}
@@ -56,14 +41,14 @@ export const SolutionSection = () => {
           ))}
         </div>
 
-        {/* Solution: Bottom-left tertiary radar */}
-        <div className="absolute bottom-[20%] left-[10%]">
-          {[...Array(3)].map((_, i) => (
+        {/* Solution: Top-left secondary radar */}
+        <div className="absolute top-[15%] left-[25%]">
+          {[...Array(2)].map((_, i) => (
             <div
-              key={`bl-pulse-${i}`}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-sage/15 animate-radar-pulse-slow"
+              key={`tl-pulse-${i}`}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-blue-gray/15 animate-radar-pulse-slow"
               style={{
-                animationDelay: `${i * 2.5 + 1}s`,
+                animationDelay: `${i * 5 + 2}s`,
                 width: '60px',
                 height: '60px',
               }}
@@ -72,13 +57,13 @@ export const SolutionSection = () => {
         </div>
 
         {/* Horizontal wave lines */}
-        {[...Array(5)].map((_, i) => (
+        {[...Array(3)].map((_, i) => (
           <div
             key={`wave-${i}`}
-            className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-blue-gray/10 to-transparent animate-wave-horizontal"
+            className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-blue-gray/8 to-transparent animate-wave-horizontal"
             style={{
-              top: `${20 + i * 15}%`,
-              animationDelay: `${i * 1.5}s`,
+              top: `${25 + i * 25}%`,
+              animationDelay: `${i * 2.5}s`,
             }}
           />
         ))}
