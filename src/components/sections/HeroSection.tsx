@@ -81,7 +81,7 @@ export const HeroSection = () => {
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight opacity-0 animate-fade-in-up"
               style={{ animationDelay: "0.2s" }}
             >
-              Tu caos administrativo te está costando dinero. Errores repetitivos y tiempo perdido.
+              Tu caos administrativo te está costando dinero.
             </h1>
 
             {/* Subheader */}

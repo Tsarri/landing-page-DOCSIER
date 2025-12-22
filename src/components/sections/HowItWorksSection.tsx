@@ -72,10 +72,6 @@ export const HowItWorksSection = () => {
               </div>
             ))}
           </div>
-
-          <p className="text-center text-lg text-muted-foreground">
-            No hay onboarding de 2 semanas. No hay consultoría cara. Solo tu firma operando más limpiamente.
-          </p>
         </div>
       </div>
     </section>
