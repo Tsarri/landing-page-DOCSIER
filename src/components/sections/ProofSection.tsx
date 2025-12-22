@@ -1,3 +1,3 @@
 export const ProofSection = () => {
-  return;
+  return null;
 };
