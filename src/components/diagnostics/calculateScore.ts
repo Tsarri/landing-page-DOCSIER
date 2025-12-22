@@ -2,16 +2,29 @@ import { AssessmentData, AssessmentScore, Recommendation } from "./types";
 
 export const calculateScore = (data: AssessmentData): AssessmentScore => {
   console.log("calculateScore input data:", JSON.stringify(data, null, 2));
+  
+  // Start with base score of 5, but penalize for unanswered questions
   let baseScore = 5.0;
+  let unansweredPenalty = 0;
 
   // Parse numeric values
-  const incomeStreamsCount = parseInt(data.incomeStreams) || 1;
-  const countriesPerYear = data.countriesPerYear === '4+' ? 4 : parseInt(data.countriesPerYear) || 1;
+  const incomeStreamsCount = parseInt(data.incomeStreams) || 0;
+  const countriesPerYear = data.countriesPerYear === '4+' ? 4 : parseInt(data.countriesPerYear) || 0;
   const activeClients = parseInt(data.activeClients) || 0;
   const toolsCount = parseInt(data.toolsUsed) || 0;
-  const taxJurisdictions = parseInt(data.taxJurisdictions) || 1;
 
-  // Capacity factors (add points)
+  // Penalize for unanswered questions
+  if (!data.activeClients) unansweredPenalty += 0.5;
+  if (!data.adminHoursPerWeek) unansweredPenalty += 0.5;
+  if (!data.toolsUsed) unansweredPenalty += 0.3;
+  if (!data.missedDeadlines) unansweredPenalty += 0.3;
+  if (!data.hoursLostToDocumentation) unansweredPenalty += 0.4;
+  if (!data.repetitiveTasksPercentage) unansweredPenalty += 0.4;
+  if (data.growthBlockers.length === 0) unansweredPenalty += 0.3;
+
+  baseScore -= unansweredPenalty;
+
+  // Capacity factors (add points only if answered)
   if (incomeStreamsCount > 1) {
     baseScore += Math.min(1.5, (incomeStreamsCount - 1) * 0.5);
   }
@@ -22,20 +35,44 @@ export const calculateScore = (data: AssessmentData): AssessmentScore => {
     baseScore += Math.min(0.5, (activeClients - 5) * 0.1);
   }
 
-  // Infrastructure factors (subtract points)
+  // Infrastructure factors (subtract points for problems)
   if (data.adminHoursPerWeek === '15+') {
     baseScore -= 1.0;
+  } else if (data.adminHoursPerWeek === '10-15') {
+    baseScore -= 0.5;
   }
+  
   if (toolsCount > 3) {
     baseScore -= Math.min(1.5, (toolsCount - 3) * 0.5);
   }
-  if (data.taxConfidence < 5) {
-    baseScore -= 0.5;
-  }
+  
   if (data.missedDeadlines === 'often' || data.missedDeadlines === 'always') {
+    baseScore -= 1.0;
+  } else if (data.missedDeadlines === 'sometimes') {
     baseScore -= 0.5;
   }
-  if (data.additionalStreams === '0') {
+
+  // New questions impact
+  if (data.hoursLostToDocumentation === '10+') {
+    baseScore -= 1.5;
+  } else if (data.hoursLostToDocumentation === '5-10') {
+    baseScore -= 1.0;
+  } else if (data.hoursLostToDocumentation === '2-5') {
+    baseScore -= 0.5;
+  }
+
+  if (data.repetitiveTasksPercentage === '40%+') {
+    baseScore -= 1.5;
+  } else if (data.repetitiveTasksPercentage === '30-40%') {
+    baseScore -= 1.0;
+  } else if (data.repetitiveTasksPercentage === '20-30%') {
+    baseScore -= 0.5;
+  }
+
+  // Growth blockers impact
+  if (data.growthBlockers.length >= 3) {
+    baseScore -= 1.0;
+  } else if (data.growthBlockers.length >= 2) {
     baseScore -= 0.5;
   }
 
@@ -97,11 +134,25 @@ export const calculateScore = (data: AssessmentData): AssessmentScore => {
 
 const calculateAdminBurden = (data: AssessmentData): number => {
   const adminHours = getAdminHours(data.adminHoursPerWeek);
-  if (adminHours < 2) return 10;
-  if (adminHours < 5) return 7.5;
-  if (adminHours < 10) return 5;
-  if (adminHours < 15) return 2.5;
-  return 1;
+  let score = 10;
+  
+  // Base hours penalty
+  if (adminHours >= 15) score -= 4;
+  else if (adminHours >= 10) score -= 3;
+  else if (adminHours >= 5) score -= 2;
+  else if (adminHours >= 2) score -= 1;
+  
+  // Documentation issues penalty
+  if (data.hoursLostToDocumentation === '10+') score -= 3;
+  else if (data.hoursLostToDocumentation === '5-10') score -= 2;
+  else if (data.hoursLostToDocumentation === '2-5') score -= 1;
+  
+  // Repetitive tasks penalty
+  if (data.repetitiveTasksPercentage === '40%+') score -= 3;
+  else if (data.repetitiveTasksPercentage === '30-40%') score -= 2;
+  else if (data.repetitiveTasksPercentage === '20-30%') score -= 1;
+  
+  return Math.max(1, Math.min(10, score));
 };
 
 const calculateInfrastructureMaturity = (data: AssessmentData): number => {
