@@ -194,7 +194,7 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-brand-sage mt-0.5">✓</span>
-                      <span>Cuántas fuentes de ingreso adicionales puedes manejar</span>
+                      <span>Las ineficiencias por falta de sistematización de procesos</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-brand-sage mt-0.5">✓</span>
