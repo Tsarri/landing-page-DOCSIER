@@ -67,7 +67,7 @@ export const HeroSection = () => {
             className="text-xs font-semibold tracking-[0.2em] uppercase text-brand-sage opacity-0 animate-fade-in"
             style={{ animationDelay: "0.1s" }}
           >
-            Para Abogados en Panamá
+            Para Abogados Independientes y Microfirmas
           </p>
 
           {/* Main Headline */}
