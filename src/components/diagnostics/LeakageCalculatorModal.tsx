@@ -114,7 +114,7 @@ export const LeakageCalculatorModal = ({ open, onOpenChange }: LeakageCalculator
                     ¿Cuánto Te Cuesta Realmente Cada Cliente?
                   </h2>
                   <p className="text-muted-foreground">
-                    Descubre tu verdadera profitabilidad por cliente y por asunto
+                    Descubre la rentabilidad de tu firma
                   </p>
                 </div>
               </div>
@@ -125,12 +125,12 @@ export const LeakageCalculatorModal = ({ open, onOpenChange }: LeakageCalculator
                   <p className="text-xs text-muted-foreground">Para completar</p>
                 </Card>
                 <Card className="p-4 text-center">
-                  <div className="text-2xl font-bold text-brand-coral mb-1">0 emails</div>
-                  <p className="text-xs text-muted-foreground">Sin registro</p>
+                  <div className="text-2xl font-bold text-brand-coral mb-1">Autodiagnóstico</div>
+                  <p className="text-xs text-muted-foreground">Personalizado</p>
                 </Card>
                 <Card className="p-4 text-center">
-                  <div className="text-2xl font-bold text-brand-coral mb-1">100%</div>
-                  <p className="text-xs text-muted-foreground">Precisión</p>
+                  <div className="text-2xl font-bold text-brand-coral mb-1">PDF</div>
+                  <p className="text-xs text-muted-foreground">Gratis</p>
                 </Card>
               </div>
 
