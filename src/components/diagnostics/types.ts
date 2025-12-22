@@ -5,9 +5,10 @@ export interface AssessmentData {
   yearsJuggling: string;
   location: string;
   countriesPerYear: string;
+  activeClients: string;
+  hourlyRate: string;
 
   // Step 2: Client & Geographic Complexity
-  activeClients: string;
   clientCountries: string;
   taxJurisdictions: string;
   regionalTemplates: string;

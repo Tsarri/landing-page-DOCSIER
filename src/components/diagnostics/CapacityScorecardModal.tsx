@@ -33,6 +33,7 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
     location: "",
     countriesPerYear: "",
     activeClients: "",
+    hourlyRate: "",
     clientCountries: "",
     taxJurisdictions: "",
     regionalTemplates: "",
@@ -88,6 +89,7 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
       location: "",
       countriesPerYear: "",
       activeClients: "",
+      hourlyRate: "",
       clientCountries: "",
       taxJurisdictions: "",
       regionalTemplates: "",
@@ -243,6 +245,18 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
                           onChange={(e) => updateData('activeClients', e.target.value)}
                           className="mt-2"
                         />
+                      </div>
+
+                      <div>
+                        <Label>¿Cuál es tu tarifa por hora (USD)?</Label>
+                        <Input
+                          type="number"
+                          placeholder="ej., 150"
+                          value={data.hourlyRate}
+                          onChange={(e) => updateData('hourlyRate', e.target.value)}
+                          className="mt-2"
+                        />
+                        <p className="text-xs text-muted-foreground mt-1">Esto nos ayuda a calcular el costo de las horas perdidas</p>
                       </div>
                     </div>
                   </div>

@@ -102,9 +102,12 @@ export const calculateScore = (data: AssessmentData): AssessmentScore => {
     interpretation = 'Optimizado - Puedes enfocarte en trabajo de mayor valor';
   }
 
-  // Calculate time value
+  // Calculate time value (annual cost of lost hours)
   const adminHours = getAdminHours(data.adminHoursPerWeek);
-  const timeValue = adminHours * 52; // Annual hours
+  const docHours = getDocHours(data.hoursLostToDocumentation);
+  const hourlyRate = parseInt(data.hourlyRate) || 75; // Default to $75 if not provided
+  const totalLostHoursPerWeek = adminHours + docHours;
+  const timeValue = totalLostHoursPerWeek * 52 * hourlyRate; // Annual cost in USD
 
   // Generate recommendations
   const recommendations = generateRecommendations(data, total);
@@ -178,6 +181,14 @@ const getAdminHours = (range: string): number => {
   if (range === '5-10') return 7.5;
   if (range === '10-15') return 12.5;
   if (range === '15+') return 17.5;
+  return 0;
+};
+
+const getDocHours = (range: string): number => {
+  if (range === '0-2') return 1;
+  if (range === '2-5') return 3.5;
+  if (range === '5-10') return 7.5;
+  if (range === '10+') return 12;
   return 0;
 };
 
