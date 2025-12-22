@@ -30,18 +30,6 @@ export const SecurityManifestoSection = () => {
             La privacía no es una característica premium. Es el estándar.
           </h2>
 
-          <div className="space-y-4 text-lg text-muted-foreground">
-            <p>
-              Construimos DOCSIER con una regla simple: nunca comprometemos encriptación zero-knowledge 
-              por facilidad, features, presión regulatoria, competencia, o dinero.
-            </p>
-            <p className="font-medium text-foreground/80">
-              El día que lo hagamos, cerramos.
-            </p>
-            <p>
-              Tus datos de clientes son privilegiados. Nosotros solo construimos el cofre. Tú tienes las llaves.
-            </p>
-          </div>
         </div>
       </div>
     </section>

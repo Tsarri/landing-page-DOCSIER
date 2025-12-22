@@ -31,10 +31,6 @@ export const PillarsSection = () => {
               </h2>
             </div>
             
-            <p className="text-xl font-medium text-brand-sage mb-6">
-              No confiamos en promesas. Confiamos en matemáticas.
-            </p>
-            
             <div className="space-y-3">
               <div className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5" />
