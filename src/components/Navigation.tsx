@@ -1,11 +1,19 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { NosotrosModal } from "./NosotrosModal";
-import { DiagnosticoModal } from "./DiagnosticoModal";
+import { CapacityScorecardModal, LeakageCalculatorModal } from "./diagnostics";
+import { ChevronDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export const Navigation = () => {
   const [nosotrosOpen, setNosotrosOpen] = useState(false);
-  const [diagnosticoOpen, setDiagnosticoOpen] = useState(false);
+  const [capacityOpen, setCapacityOpen] = useState(false);
+  const [leakageOpen, setLeakageOpen] = useState(false);
 
   return (
     <>
@@ -21,13 +29,28 @@ export const Navigation = () => {
 
             {/* Navigation Tabs */}
             <div className="flex items-center gap-2">
-              <Button
-                variant="secondary"
-                size="sm"
-                onClick={() => setDiagnosticoOpen(true)}
-              >
-                Auto-Diagnóstico
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="secondary" size="sm" className="gap-1">
+                    Auto-Diagnóstico
+                    <ChevronDown className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="bg-bg-elevated border-border z-50">
+                  <DropdownMenuItem 
+                    onClick={() => setCapacityOpen(true)}
+                    className="cursor-pointer"
+                  >
+                    Índice de Capacidad Operacional
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={() => setLeakageOpen(true)}
+                    className="cursor-pointer"
+                  >
+                    Calculadora de Pérdidas
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
               <Button
                 variant="nav"
                 onClick={() => setNosotrosOpen(true)}
@@ -40,7 +63,8 @@ export const Navigation = () => {
       </nav>
 
       <NosotrosModal open={nosotrosOpen} onOpenChange={setNosotrosOpen} />
-      <DiagnosticoModal open={diagnosticoOpen} onOpenChange={setDiagnosticoOpen} />
+      <CapacityScorecardModal open={capacityOpen} onOpenChange={setCapacityOpen} />
+      <LeakageCalculatorModal open={leakageOpen} onOpenChange={setLeakageOpen} />
     </>
   );
 };
