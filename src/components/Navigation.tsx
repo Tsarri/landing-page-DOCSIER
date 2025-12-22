@@ -47,16 +47,16 @@ export const Navigation = () => {
                     <ChevronDown className="h-4 w-4" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="bg-bg-elevated border-border z-50">
+                <DropdownMenuContent align="end" className="bg-bg-elevated border border-muted/30 z-50 min-w-[240px]">
                   <DropdownMenuItem 
                     onClick={() => setCapacityOpen(true)}
-                    className="cursor-pointer"
+                    className="cursor-pointer hover:bg-bg-hover focus:bg-bg-hover text-foreground py-2.5 px-3"
                   >
                     Índice de Capacidad Operacional
                   </DropdownMenuItem>
                   <DropdownMenuItem 
                     onClick={() => setLeakageOpen(true)}
-                    className="cursor-pointer"
+                    className="cursor-pointer hover:bg-bg-hover focus:bg-bg-hover text-foreground py-2.5 px-3"
                   >
                     Calculadora de Pérdidas
                   </DropdownMenuItem>
