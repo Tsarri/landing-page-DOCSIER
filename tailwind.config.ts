@@ -141,6 +141,33 @@ export default {
             opacity: "0"
           },
         },
+        "blob": {
+          "0%": { 
+            transform: "translate(0, 0) scale(1)",
+          },
+          "33%": { 
+            transform: "translate(30px, -50px) scale(1.1)",
+          },
+          "66%": { 
+            transform: "translate(-20px, 20px) scale(0.9)",
+          },
+          "100%": { 
+            transform: "translate(0, 0) scale(1)",
+          },
+        },
+        "flow-path": {
+          "0%": { 
+            strokeDashoffset: "1000",
+            opacity: "0",
+          },
+          "50%": { 
+            opacity: "1",
+          },
+          "100%": { 
+            strokeDashoffset: "0",
+            opacity: "0",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -153,6 +180,9 @@ export default {
         "radar-pulse": "radar-pulse 12s ease-out infinite",
         "radar-pulse-slow": "radar-pulse-slow 15s ease-out infinite",
         "wave-horizontal": "wave-horizontal 8s ease-in-out infinite",
+        "blob": "blob 7s ease-in-out infinite",
+        "flow-path": "flow-path 6s ease-in-out infinite",
+        "flow-path-slow": "flow-path 10s ease-in-out infinite",
       },
       boxShadow: {
         "coral-glow": "0 8px 24px hsl(354 93% 60% / 0.3)",

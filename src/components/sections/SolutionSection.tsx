@@ -17,8 +17,45 @@ export const SolutionSection = () => {
   ];
 
   return (
-    <section className="section-padding">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="section-padding relative overflow-hidden">
+      {/* Free-flowing dynamic background */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Flowing gradient blobs */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-coral/5 rounded-full blur-3xl animate-blob" />
+        <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-brand-sage/8 rounded-full blur-3xl animate-blob animation-delay-2000" />
+        <div className="absolute bottom-0 left-1/2 w-72 h-72 bg-brand-purple/5 rounded-full blur-3xl animate-blob animation-delay-4000" />
+        
+        {/* Flowing wave lines */}
+        <svg className="absolute inset-0 w-full h-full opacity-20" preserveAspectRatio="none">
+          <path
+            d="M0,50 Q250,0 500,50 T1000,50 T1500,50"
+            fill="none"
+            stroke="url(#wave-gradient-1)"
+            strokeWidth="1"
+            className="animate-flow-path"
+          />
+          <path
+            d="M0,100 Q200,150 400,100 T800,100 T1200,100"
+            fill="none"
+            stroke="url(#wave-gradient-2)"
+            strokeWidth="0.5"
+            className="animate-flow-path-slow"
+          />
+          <defs>
+            <linearGradient id="wave-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="hsl(var(--brand-coral))" stopOpacity="0" />
+              <stop offset="50%" stopColor="hsl(var(--brand-coral))" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="hsl(var(--brand-coral))" stopOpacity="0" />
+            </linearGradient>
+            <linearGradient id="wave-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="hsl(var(--brand-sage))" stopOpacity="0" />
+              <stop offset="50%" stopColor="hsl(var(--brand-sage))" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="hsl(var(--brand-sage))" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mx-auto text-center space-y-10">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
             DOCSIER elimina el 75% de tu carga administrativa
