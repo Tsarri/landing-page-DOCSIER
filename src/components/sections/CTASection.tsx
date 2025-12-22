@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DiagnosticoModal } from "../DiagnosticoModal";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 
 export const CTASection = () => {
   const [diagnosticoOpen, setDiagnosticoOpen] = useState(false);
@@ -64,14 +64,32 @@ export const CTASection = () => {
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-xl mx-auto text-center space-y-8">
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground">Registrate hoy y recupera tu autonomía</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+              Recupera tu autonomía.
+            </h2>
 
-            <p className="text-lg text-muted-foreground">Despídete del tiempo perdido y olvídate de errores manuales.</p>
+            <p className="text-lg text-muted-foreground">
+              Diagnostica tu caos hoy. Sin tarjeta de crédito. Sin obligaciones.
+            </p>
 
-            <Button variant="ctaLarge" onClick={() => setDiagnosticoOpen(true)} className="group">
-              Auditar Mis Plazos
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </Button>
+            <div className="space-y-4">
+              <Button variant="ctaLarge" onClick={() => setDiagnosticoOpen(true)} className="group">
+                Comenzar Auto-Diagnóstico
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </Button>
+
+              <p className="text-sm text-muted-foreground">
+                O inicia una prueba de DOCSIER y observa los agentes en acción
+              </p>
+              
+              <Button 
+                variant="ghost" 
+                className="text-brand-sage hover:text-brand-sage hover:bg-brand-sage/10"
+              >
+                <Play className="w-4 h-4 mr-2" />
+                5 minutos de setup
+              </Button>
+            </div>
           </div>
         </div>
       </section>

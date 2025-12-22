@@ -1,9 +1,10 @@
 import { Navigation } from "@/components/Navigation";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { CostSection } from "@/components/sections/CostSection";
-import { SolutionSection } from "@/components/sections/SolutionSection";
+import { PillarsSection } from "@/components/sections/PillarsSection";
 import { ProofSection } from "@/components/sections/ProofSection";
+import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
+import { SecurityManifestoSection } from "@/components/sections/SecurityManifestoSection";
 import { CTASection } from "@/components/sections/CTASection";
 import { Footer } from "@/components/Footer";
 
@@ -14,9 +15,10 @@ const Index = () => {
       <Navigation />
       <main>
         <HeroSection />
-        <CostSection />
-        <SolutionSection />
+        <PillarsSection />
         <ProofSection />
+        <HowItWorksSection />
+        <SecurityManifestoSection />
         <CTASection />
       </main>
       <Footer />
