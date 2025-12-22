@@ -78,15 +78,18 @@ export const PillarsSection = () => {
             </div>
           </div>
 
-          {/* PILLAR 3: HOW IT WORKS */}
+          {/* PILLAR 3: DOCSIER 101 */}
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-8">
-              Cómo funciona
+              Docsier 101
             </h2>
             
             <div className="grid sm:grid-cols-3 gap-6">
               {/* Box 1: Deadlines */}
-              <div className="p-6 rounded-xl bg-bg-elevated border border-muted/20 space-y-4">
+              <div 
+                className="p-6 rounded-xl bg-bg-elevated border border-muted/20 space-y-4 animate-fade-in opacity-0"
+                style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}
+              >
                 <div className="p-3 rounded-xl bg-brand-blue-gray/10 border border-brand-blue-gray/20 w-fit">
                   <Calendar className="w-6 h-6 text-brand-blue-gray" />
                 </div>
@@ -99,7 +102,10 @@ export const PillarsSection = () => {
               </div>
 
               {/* Box 2: Documentation */}
-              <div className="p-6 rounded-xl bg-bg-elevated border border-muted/20 space-y-4">
+              <div 
+                className="p-6 rounded-xl bg-bg-elevated border border-muted/20 space-y-4 animate-fade-in opacity-0"
+                style={{ animationDelay: '0.25s', animationFillMode: 'forwards' }}
+              >
                 <div className="p-3 rounded-xl bg-brand-sage/10 border border-brand-sage/20 w-fit">
                   <Folder className="w-6 h-6 text-brand-sage" />
                 </div>
@@ -112,7 +118,10 @@ export const PillarsSection = () => {
               </div>
 
               {/* Box 3: Context */}
-              <div className="p-6 rounded-xl bg-bg-elevated border border-muted/20 space-y-4">
+              <div 
+                className="p-6 rounded-xl bg-bg-elevated border border-muted/20 space-y-4 animate-fade-in opacity-0"
+                style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}
+              >
                 <div className="p-3 rounded-xl bg-brand-coral/10 border border-brand-coral/20 w-fit">
                   <Link2 className="w-6 h-6 text-brand-coral" />
                 </div>
