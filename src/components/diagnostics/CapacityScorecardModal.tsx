@@ -12,7 +12,7 @@ import { AssessmentData, AssessmentScore } from "./types";
 import { calculateScore } from "./calculateScore";
 import { 
   BarChart3, Clock, TrendingUp, ChevronLeft, ChevronRight, 
-  AlertCircle, Settings, Shield, Share2, Lock, X, Calculator, DollarSign
+  AlertCircle, Settings, Shield, Share2, Lock, X, Calculator, DollarSign, UserPlus, Mail
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
@@ -624,7 +624,15 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
 
               {/* Actions */}
               <div className="space-y-3 pt-4">
-                <div className="flex gap-3">
+                <div className="grid grid-cols-1 gap-2">
+                  <Button variant="outline" className="w-full h-12 justify-start gap-3">
+                    <Mail className="w-5 h-5 text-brand-coral" />
+                    <span>Enviar PDF del reporte a mi correo</span>
+                  </Button>
+                  <Button variant="outline" className="w-full h-12 justify-start gap-3">
+                    <UserPlus className="w-5 h-5 text-brand-coral" />
+                    <span>Registrar mi perfil en la plataforma</span>
+                  </Button>
                   <Button 
                     variant="outline" 
                     onClick={() => {
@@ -643,22 +651,10 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
                         });
                       }
                     }} 
-                    className="flex-1"
+                    className="w-full h-12 justify-start gap-3"
                   >
-                    <Share2 className="w-4 h-4 mr-2" />
-                    Compartir
-                  </Button>
-                  <Button 
-                    onClick={() => {
-                      toast({
-                        title: "¡Próximamente!",
-                        description: "La función de registro estará disponible pronto. Te notificaremos cuando esté lista."
-                      });
-                    }} 
-                    className="flex-1 bg-brand-coral hover:bg-brand-coral/90"
-                  >
-                    <Lock className="w-4 h-4 mr-2" />
-                    Registrarme
+                    <Share2 className="w-5 h-5 text-brand-coral" />
+                    <span>Compartir con un amigo</span>
                   </Button>
                 </div>
                 <Button variant="ghost" onClick={handleRestart} className="w-full text-muted-foreground">
