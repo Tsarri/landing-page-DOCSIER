@@ -1,3 +1,3 @@
 export const CostSection = () => {
-  return;
+  return null;
 };

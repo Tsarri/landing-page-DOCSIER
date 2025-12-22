@@ -6,8 +6,8 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center hero-gradient pt-16 overflow-hidden">
-      {/* Radar signal background */}
+    <section className="relative min-h-screen flex items-center justify-center bg-background pt-16 overflow-hidden">
+      {/* Dynamic animated background - matching AnimatedBackground */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Central radar pulse */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -16,7 +16,7 @@ export const HeroSection = () => {
               key={`center-pulse-${i}`}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-coral/20 animate-radar-pulse"
               style={{
-                animationDelay: `${i * 1.2}s`,
+                animationDelay: `${i * 2}s`,
                 width: '100px',
                 height: '100px',
               }}
@@ -24,31 +24,31 @@ export const HeroSection = () => {
           ))}
         </div>
 
-        {/* Top-left radar node */}
-        <div className="absolute top-[20%] left-[15%]">
+        {/* Secondary radar source - bottom left */}
+        <div className="absolute bottom-[20%] left-[15%]">
           {[...Array(4)].map((_, i) => (
             <div
-              key={`tl-pulse-${i}`}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-sage/15 animate-radar-pulse-slow"
+              key={`bl-pulse-${i}`}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-purple/15 animate-radar-pulse-slow"
               style={{
-                animationDelay: `${i * 1.8}s`,
-                width: '60px',
-                height: '60px',
+                animationDelay: `${i * 3}s`,
+                width: '80px',
+                height: '80px',
               }}
             />
           ))}
         </div>
 
-        {/* Bottom-right radar node */}
-        <div className="absolute bottom-[25%] right-[10%]">
+        {/* Tertiary radar source - top right */}
+        <div className="absolute top-[30%] right-[20%]">
           {[...Array(4)].map((_, i) => (
             <div
-              key={`br-pulse-${i}`}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-purple/20 animate-radar-pulse-slow"
+              key={`tr-pulse-${i}`}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-sage/10 animate-radar-pulse-slow"
               style={{
-                animationDelay: `${i * 2}s`,
-                width: '50px',
-                height: '50px',
+                animationDelay: `${i * 2.5 + 1}s`,
+                width: '60px',
+                height: '60px',
               }}
             />
           ))}
@@ -58,20 +58,21 @@ export const HeroSection = () => {
         {[...Array(5)].map((_, i) => (
           <div
             key={`wave-${i}`}
-            className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-coral/10 to-transparent animate-wave-horizontal"
+            className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-blue-gray/10 to-transparent animate-wave-horizontal"
             style={{
-              top: `${10 + i * 20}%`,
-              animationDelay: `${i * 0.8}s`,
+              top: `${20 + i * 15}%`,
+              animationDelay: `${i * 1.5}s`,
             }}
           />
         ))}
 
-        {/* Connecting lines - network effect */}
-        <svg className="absolute inset-0 w-full h-full opacity-10">
-          <line x1="15%" y1="20%" x2="50%" y2="50%" stroke="currentColor" strokeWidth="0.5" className="text-brand-sage animate-pulse" />
-          <line x1="90%" y1="75%" x2="50%" y2="50%" stroke="currentColor" strokeWidth="0.5" className="text-brand-purple animate-pulse" style={{ animationDelay: '1s' }} />
-          <line x1="15%" y1="20%" x2="90%" y2="75%" stroke="currentColor" strokeWidth="0.3" className="text-brand-coral animate-pulse" style={{ animationDelay: '2s' }} />
-        </svg>
+        {/* Subtle noise texture overlay */}
+        <div 
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          }}
+        />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -123,8 +124,6 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      {/* Decorative gradient orb */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-brand-coral/5 rounded-full blur-[120px] pointer-events-none" />
     </section>
   );
 };
