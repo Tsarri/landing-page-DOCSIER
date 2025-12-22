@@ -45,7 +45,7 @@ export function BaselineMetrics({ onSubmit, initialMetrics }: BaselineMetricsPro
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex justify-between items-center">
-              <Label>¿Cuántos asuntos manejas actualmente?</Label>
+              <Label>¿Cuántos asuntos cobrables (honorarios) tienes activos por semana?</Label>
               <span className="text-2xl font-bold text-primary">
                 {metrics.activeMatters}
               </span>
