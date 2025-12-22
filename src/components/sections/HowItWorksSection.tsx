@@ -17,7 +17,7 @@ export const HowItWorksSection = () => {
     {
       number: "3",
       title: "Observa",
-      description: "Los agentes comienzan a trabajar. Plazos rastreados, expedientes organizados, patrones visibles.",
+      description: "Fechas límite rastreadas, expedientes organizados, patrones visibles.",
       icon: Eye,
     },
   ];
@@ -41,7 +41,7 @@ export const HowItWorksSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground text-center mb-12">
-            Onboarding con autoservicio instantáneo, licencia freemium de por vida disponible para los primeros 20.
+            Onboarding con autoservicio instantáneo.
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
