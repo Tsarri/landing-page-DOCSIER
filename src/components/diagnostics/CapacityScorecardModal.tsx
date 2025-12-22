@@ -436,7 +436,7 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
-                        <h3 className="font-semibold text-sm">Carga Administrativa</h3>
+                        <h3 className="font-semibold text-sm">Sobrecarga Operacional - Pérdidas Administrativas</h3>
                         <span className={`font-semibold ${getScoreColor(score.adminBurden)}`}>
                           {score.adminBurden.toFixed(1)}/10
                         </span>
