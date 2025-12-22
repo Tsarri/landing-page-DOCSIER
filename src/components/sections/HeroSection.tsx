@@ -81,7 +81,7 @@ export const HeroSection = () => {
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight opacity-0 animate-fade-in-up"
               style={{ animationDelay: "0.2s" }}
             >
-              Tu caos administrativo te está costando dinero.
+              Tu caos administrativo te está costando dinero y tiempo.
             </h1>
 
             {/* Subheader */}
@@ -89,7 +89,7 @@ export const HeroSection = () => {
               className="text-xl text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in"
               style={{ animationDelay: "0.4s" }}
             >
-              Automatiza lo que un asistente haría. Descubre lo que tu asistente nunca te diría.
+              Elimina errores manuales con documentación inteligente.
             </p>
 
             {/* CTA Button */}

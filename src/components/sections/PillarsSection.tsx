@@ -93,39 +93,12 @@ export const PillarsSection = () => {
                 <Lightbulb className="w-8 h-8 text-brand-blue-gray" />
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-                Tu caos administrativo contiene oro operacional.
+                Recupera tiempo perdido y elimina errores antes de que sucedan.
               </h2>
             </div>
             
-            <div className="space-y-4 text-lg text-muted-foreground mb-6">
-              <p>
-                Cada plazo perdido, cada documento mal archivado, cada correo sin respuesta 
-                te dice algo sobre cómo funciona realmente tu firma.
-              </p>
-              <p className="font-medium text-foreground/80">
-                La mayoría de abogados nunca lo ven.
-              </p>
-            </div>
-            
-            <p className="text-xl font-medium text-brand-blue-gray mb-4">Con DOCSIER:</p>
-            
-            <div className="space-y-3 mb-6">
-              <div className="flex items-center gap-3">
-                <Check className="w-5 h-5 text-brand-blue-gray flex-shrink-0" />
-                <span className="text-foreground">Ves dónde se pierde dinero (Calculadora de Pérdidas)</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Check className="w-5 h-5 text-brand-blue-gray flex-shrink-0" />
-                <span className="text-foreground">Ves dónde estás ganando (Índice de Capacidad Operacional)</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Check className="w-5 h-5 text-brand-blue-gray flex-shrink-0" />
-                <span className="text-foreground">Ves patrones que tu competencia no ve</span>
-              </div>
-            </div>
-            
-            <p className="text-lg font-medium text-brand-blue-gray">
-              Tu administrativo se convierte en tu ventaja competitiva. No en tu carga.
+            <p className="text-lg text-muted-foreground">
+              Tu ineficiencia operacional es una mina de oro de tiempo.
             </p>
           </div>
 

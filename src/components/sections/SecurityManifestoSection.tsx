@@ -27,7 +27,7 @@ export const SecurityManifestoSection = () => {
           </div>
           
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-            La privacía no es una característica premium. Es el estándar.
+            Tu seguridad es la prioridad.
           </h2>
 
         </div>
