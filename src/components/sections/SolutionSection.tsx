@@ -23,73 +23,73 @@ export const SolutionSection = () => {
   ];
 
   return (
-    <section className="section-padding relative overflow-hidden">
-      {/* Free-flowing dynamic background */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Flowing gradient blobs - more visible */}
-        <div className="absolute -top-20 left-1/4 w-[500px] h-[500px] bg-brand-coral/10 rounded-full blur-3xl animate-blob" />
-        <div className="absolute top-1/3 -right-20 w-[400px] h-[400px] bg-brand-sage/15 rounded-full blur-3xl animate-blob animation-delay-2000" />
-        <div className="absolute -bottom-32 left-1/3 w-[450px] h-[450px] bg-brand-purple/10 rounded-full blur-3xl animate-blob animation-delay-4000" />
-        <div className="absolute top-1/2 left-10 w-64 h-64 bg-brand-coral/8 rounded-full blur-2xl animate-blob animation-delay-2000" />
-        
-        {/* Floating particles */}
-        {[...Array(8)].map((_, i) => (
+    <section className="bg-background section-padding relative overflow-hidden">
+      {/* Dynamic animated background - matching radar style */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Central radar pulse */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={`center-${i}`}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-coral/20 animate-radar-pulse"
+              style={{
+                animationDelay: `${i * 2}s`,
+                width: '100px',
+                height: '100px',
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Secondary radar source - bottom left */}
+        <div className="absolute bottom-[20%] left-[15%]">
+          {[...Array(4)].map((_, i) => (
+            <div
+              key={`left-${i}`}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-purple/15 animate-radar-pulse-slow"
+              style={{
+                animationDelay: `${i * 3}s`,
+                width: '80px',
+                height: '80px',
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Tertiary radar source - top right */}
+        <div className="absolute top-[30%] right-[20%]">
+          {[...Array(4)].map((_, i) => (
+            <div
+              key={`right-${i}`}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-sage/10 animate-radar-pulse-slow"
+              style={{
+                animationDelay: `${i * 2.5 + 1}s`,
+                width: '60px',
+                height: '60px',
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Horizontal wave lines */}
+        {[...Array(5)].map((_, i) => (
           <div
-            key={i}
-            className="absolute w-2 h-2 bg-brand-sage/30 rounded-full animate-float"
+            key={`wave-${i}`}
+            className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-blue-gray/10 to-transparent animate-wave-horizontal"
             style={{
-              left: `${10 + i * 12}%`,
-              top: `${20 + (i % 3) * 25}%`,
-              animationDelay: `${i * 0.5}s`,
-              animationDuration: `${3 + i * 0.5}s`,
+              top: `${20 + i * 15}%`,
+              animationDelay: `${i * 1.5}s`,
             }}
           />
         ))}
-        
-        {/* Flowing wave lines */}
-        <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1200 300">
-          <path
-            d="M-100,150 Q200,50 400,150 T800,150 T1300,150"
-            fill="none"
-            stroke="url(#wave-gradient-1)"
-            strokeWidth="2"
-            className="animate-flow-path"
-            style={{ strokeDasharray: 1000, strokeDashoffset: 1000 }}
-          />
-          <path
-            d="M-100,200 Q150,250 350,200 T700,200 T1100,200 T1400,200"
-            fill="none"
-            stroke="url(#wave-gradient-2)"
-            strokeWidth="1.5"
-            className="animate-flow-path-slow"
-            style={{ strokeDasharray: 1000, strokeDashoffset: 1000 }}
-          />
-          <path
-            d="M-50,100 Q300,30 500,100 T900,100 T1250,100"
-            fill="none"
-            stroke="url(#wave-gradient-3)"
-            strokeWidth="1"
-            className="animate-flow-path"
-            style={{ strokeDasharray: 1000, strokeDashoffset: 1000, animationDelay: '2s' }}
-          />
-          <defs>
-            <linearGradient id="wave-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="hsl(var(--brand-coral))" stopOpacity="0" />
-              <stop offset="50%" stopColor="hsl(var(--brand-coral))" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="hsl(var(--brand-coral))" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient id="wave-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="hsl(var(--brand-sage))" stopOpacity="0" />
-              <stop offset="50%" stopColor="hsl(var(--brand-sage))" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="hsl(var(--brand-sage))" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient id="wave-gradient-3" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="hsl(var(--brand-purple))" stopOpacity="0" />
-              <stop offset="50%" stopColor="hsl(var(--brand-purple))" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="hsl(var(--brand-purple))" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-        </svg>
+
+        {/* Subtle noise texture overlay */}
+        <div 
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          }}
+        />
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mx-auto text-center space-y-10">
