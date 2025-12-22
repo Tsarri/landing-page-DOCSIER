@@ -26,8 +26,9 @@ export const Navigation = () => {
                 DOCSIER
               </span>
               <Button
+                variant="ghost"
                 size="sm"
-                className="bg-brand-coral hover:bg-brand-coral-hover text-white"
+                className="bg-brand-coral/15 text-brand-coral hover:bg-brand-coral/25 hover:text-brand-coral border border-brand-coral/30"
               >
                 Iniciar Sesión
               </Button>
