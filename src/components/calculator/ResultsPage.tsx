@@ -3,8 +3,7 @@ import {
   calculateAnnualImpact,
   calculatePotentialSavings,
   formatCurrency,
-  formatPercentage,
-  getClientMixBreakdown
+  formatPercentage
 } from "@/lib/calculatorLogic";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -14,9 +13,16 @@ import {
   Calendar,
   TrendingUp,
   AlertTriangle,
-  ArrowRight
+  ArrowRight,
+  Calculator,
+  Info
 } from "lucide-react";
-import { ClientScenarios } from "./ClientScenarios";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
+} from "@/components/ui/accordion";
 
 interface ResultsPageProps {
   metrics: BaselineMetrics;
@@ -26,16 +32,12 @@ interface ResultsPageProps {
 export function ResultsPage({ metrics, clientType }: ResultsPageProps) {
   const results = calculateAnnualImpact(metrics);
   const savings = calculatePotentialSavings(results.annualAdminCost);
-  const breakdown = getClientMixBreakdown(clientType);
 
-  const profitableMatters = Math.round(
-    (metrics.activeMatters * breakdown.profitable) / 100
-  );
-  const marginalMatters = Math.round(
-    (metrics.activeMatters * breakdown.marginal) / 100
-  );
-  const losingMatters =
-    metrics.activeMatters - profitableMatters - marginalMatters;
+  // Calculation breakdown values
+  const weeksPerYear = 52;
+  const totalAdminHoursPerYear = metrics.adminHoursPerWeek * weeksPerYear;
+  const avgMatterFee = 4000;
+  const totalBillableHours = 40 * 30; // 40 weeks * 30 hrs/week
 
   return (
     <div className="space-y-8">
@@ -98,53 +100,163 @@ export function ResultsPage({ metrics, clientType }: ResultsPageProps) {
         </p>
       </div>
 
-      {/* Client Scenarios */}
-      <div className="space-y-4">
-        <h2 className="text-xl font-bold text-foreground text-center">
-          Desglose de Profitabilidad por Tipo de Cliente
-        </h2>
-        <ClientScenarios metrics={metrics} />
-      </div>
-
-      {/* Matter Breakdown */}
+      {/* Algebraic Breakdown */}
       <Card className="bg-card/50 border-border/50">
         <CardHeader>
-          <CardTitle className="text-center">
-            Esto Significa Que de Tus {metrics.activeMatters} Asuntos Activos:
+          <CardTitle className="flex items-center gap-2">
+            <Calculator className="w-5 h-5 text-primary" />
+            ¿Cómo Llegamos a Estos Resultados?
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="grid md:grid-cols-3 gap-4">
-            <div className="text-center p-4 bg-success/10 rounded-lg">
-              <p className="text-4xl font-bold text-success">
-                {profitableMatters}
-              </p>
-              <p className="font-medium text-foreground">Son rentables</p>
-              <p className="text-sm text-muted-foreground">
-                Generan márgenes saludables
-              </p>
+        <CardContent className="space-y-6">
+          {/* Cost Calculation */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-foreground flex items-center gap-2">
+              <span className="w-6 h-6 rounded-full bg-destructive/20 text-destructive text-sm flex items-center justify-center">1</span>
+              Cálculo del Costo Administrativo Anual
+            </h3>
+            <div className="bg-muted/50 p-4 rounded-lg font-mono text-sm space-y-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-muted-foreground">Costo Anual Admin =</span>
+                <span className="text-foreground">Horas Admin/Semana</span>
+                <span className="text-muted-foreground">×</span>
+                <span className="text-foreground">Semanas/Año</span>
+                <span className="text-muted-foreground">×</span>
+                <span className="text-foreground">Tarifa Horaria</span>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 text-primary font-bold">
+                <span className="text-muted-foreground">=</span>
+                <span>{metrics.adminHoursPerWeek} hrs</span>
+                <span className="text-muted-foreground">×</span>
+                <span>{weeksPerYear} semanas</span>
+                <span className="text-muted-foreground">×</span>
+                <span>{formatCurrency(metrics.hourlyRate)}/hr</span>
+              </div>
+              <div className="flex items-center gap-2 text-destructive font-bold text-lg pt-2 border-t border-border/50">
+                <span className="text-muted-foreground">=</span>
+                <span>{formatCurrency(results.annualAdminCost)}</span>
+              </div>
             </div>
-            <div className="text-center p-4 bg-warning/10 rounded-lg">
-              <p className="text-4xl font-bold text-warning">{marginalMatters}</p>
-              <p className="font-medium text-foreground">Son marginales</p>
-              <p className="text-sm text-muted-foreground">
-                Apenas justifican el esfuerzo
-              </p>
+            <p className="text-xs text-muted-foreground flex items-start gap-1">
+              <Info className="w-3 h-3 mt-0.5 flex-shrink-0" />
+              Las horas administrativas representan tiempo no facturable: emails, llamadas, seguimiento, facturación, organización.
+            </p>
+          </div>
+
+          {/* Revenue Estimation */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-foreground flex items-center gap-2">
+              <span className="w-6 h-6 rounded-full bg-success/20 text-success text-sm flex items-center justify-center">2</span>
+              Estimación de Ingresos Brutos
+            </h3>
+            <div className="bg-muted/50 p-4 rounded-lg font-mono text-sm space-y-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-muted-foreground">Ingresos Brutos =</span>
+                <span className="text-foreground">Asuntos Activos</span>
+                <span className="text-muted-foreground">×</span>
+                <span className="text-foreground">Honorario Promedio</span>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 text-primary font-bold">
+                <span className="text-muted-foreground">=</span>
+                <span>{metrics.activeMatters} asuntos</span>
+                <span className="text-muted-foreground">×</span>
+                <span>{formatCurrency(avgMatterFee)}/asunto</span>
+              </div>
+              <div className="flex items-center gap-2 text-success font-bold text-lg pt-2 border-t border-border/50">
+                <span className="text-muted-foreground">=</span>
+                <span>{formatCurrency(results.estimatedAnnualRevenue)}</span>
+              </div>
             </div>
-            <div className="text-center p-4 bg-destructive/10 rounded-lg">
-              <p className="text-4xl font-bold text-destructive">
-                {losingMatters}
-              </p>
-              <p className="font-medium text-foreground">Te pierden dinero</p>
-              <p className="text-sm text-muted-foreground">
-                Reducen tu profitabilidad total
-              </p>
+            <p className="text-xs text-muted-foreground flex items-start gap-1">
+              <Info className="w-3 h-3 mt-0.5 flex-shrink-0" />
+              Usamos un honorario promedio de {formatCurrency(avgMatterFee)} por asunto como estimación conservadora.
+            </p>
+          </div>
+
+          {/* Real Profit */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-foreground flex items-center gap-2">
+              <span className="w-6 h-6 rounded-full bg-primary/20 text-primary text-sm flex items-center justify-center">3</span>
+              Ganancia Real Anual
+            </h3>
+            <div className="bg-muted/50 p-4 rounded-lg font-mono text-sm space-y-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-muted-foreground">Ganancia Real =</span>
+                <span className="text-foreground">Ingresos Brutos</span>
+                <span className="text-muted-foreground">−</span>
+                <span className="text-foreground">Costo Admin</span>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 text-primary font-bold">
+                <span className="text-muted-foreground">=</span>
+                <span className="text-success">{formatCurrency(results.estimatedAnnualRevenue)}</span>
+                <span className="text-muted-foreground">−</span>
+                <span className="text-destructive">{formatCurrency(results.annualAdminCost)}</span>
+              </div>
+              <div className="flex items-center gap-2 text-primary font-bold text-lg pt-2 border-t border-border/50">
+                <span className="text-muted-foreground">=</span>
+                <span>{formatCurrency(results.actualAnnualProfit)}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Effective Rate */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-foreground flex items-center gap-2">
+              <span className="w-6 h-6 rounded-full bg-warning/20 text-warning text-sm flex items-center justify-center">4</span>
+              Tarifa Horaria Efectiva
+            </h3>
+            <div className="bg-muted/50 p-4 rounded-lg font-mono text-sm space-y-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-muted-foreground">Tarifa Efectiva =</span>
+                <span className="text-foreground">Ganancia Real</span>
+                <span className="text-muted-foreground">÷</span>
+                <span className="text-foreground">Horas Facturables/Año</span>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 text-primary font-bold">
+                <span className="text-muted-foreground">=</span>
+                <span>{formatCurrency(results.actualAnnualProfit)}</span>
+                <span className="text-muted-foreground">÷</span>
+                <span>{totalBillableHours.toLocaleString()} hrs</span>
+              </div>
+              <div className="flex items-center gap-2 font-bold text-lg pt-2 border-t border-border/50">
+                <span className="text-muted-foreground">=</span>
+                <span className="text-primary">{formatCurrency(results.effectiveHourlyRate)}</span>
+                <span className="text-muted-foreground text-sm font-normal">(vs {formatCurrency(metrics.hourlyRate)} nominal)</span>
+              </div>
+            </div>
+            <p className="text-xs text-muted-foreground flex items-start gap-1">
+              <Info className="w-3 h-3 mt-0.5 flex-shrink-0" />
+              Asumimos 40 semanas laborales × 30 horas facturables por semana = {totalBillableHours.toLocaleString()} horas/año.
+            </p>
+          </div>
+
+          {/* Loss Percentage */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-foreground flex items-center gap-2">
+              <span className="w-6 h-6 rounded-full bg-destructive/20 text-destructive text-sm flex items-center justify-center">5</span>
+              Porcentaje de Pérdida por Overhead
+            </h3>
+            <div className="bg-muted/50 p-4 rounded-lg font-mono text-sm space-y-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-muted-foreground">% Pérdida =</span>
+                <span className="text-foreground">(Costo Admin ÷ Ingresos Brutos)</span>
+                <span className="text-muted-foreground">× 100</span>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 text-primary font-bold">
+                <span className="text-muted-foreground">=</span>
+                <span>({formatCurrency(results.annualAdminCost)} ÷ {formatCurrency(results.estimatedAnnualRevenue)})</span>
+                <span className="text-muted-foreground">× 100</span>
+              </div>
+              <div className="flex items-center gap-2 text-destructive font-bold text-lg pt-2 border-t border-border/50">
+                <span className="text-muted-foreground">=</span>
+                <span>{formatPercentage(results.profitLossPercentage)}</span>
+              </div>
             </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* Effective Rate */}
+      {/* Effective Rate Visual */}
       <Card className="bg-muted/30 border-border/50">
         <CardHeader>
           <CardTitle className="text-center">
