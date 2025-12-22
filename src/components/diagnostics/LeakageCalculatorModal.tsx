@@ -125,7 +125,7 @@ export const LeakageCalculatorModal = ({ open, onOpenChange }: LeakageCalculator
                   <p className="text-xs text-muted-foreground">Para completar</p>
                 </Card>
                 <Card className="p-4 text-center">
-                  <div className="text-2xl font-bold text-brand-coral mb-1">Autodiagnóstico</div>
+                  <div className="text-2xl font-bold text-brand-coral mb-1">Diagnóstico</div>
                   <p className="text-xs text-muted-foreground">Personalizado</p>
                 </Card>
                 <Card className="p-4 text-center">
