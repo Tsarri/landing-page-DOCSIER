@@ -5,7 +5,7 @@ export const Footer = () => {
         <div className="max-w-3xl mx-auto text-center space-y-4">
           <p className="text-foreground font-medium">
             <span className="text-xl font-semibold">DOCSIER</span>
-            <span className="text-muted-foreground"> — Para abogados independientes y microfirmas que prefieren operar limpiamente.</span>
+            <span className="text-muted-foreground"> — Para abogados independientes y microfirmas con procesos inteligentes.</span>
           </p>
           
           <p className="text-sm text-muted-foreground">
