@@ -20,65 +20,7 @@ export const PillarsSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="space-y-24">
           
-          {/* PILLAR 1: SECURITY */}
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="p-3 rounded-xl bg-brand-sage/10 border border-brand-sage/20">
-                <Shield className="w-8 h-8 text-brand-sage" />
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-                Tu información nunca abandona tu firma.
-              </h2>
-            </div>
-            
-            <div className="space-y-3">
-              <div className="flex items-start gap-3">
-                <Check className="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5" />
-                <span className="text-lg text-muted-foreground">Encriptación del lado del servidor</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <Check className="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5" />
-                <span className="text-lg text-muted-foreground">Ni siquiera nosotros podemos leer tus datos</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <Check className="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5" />
-                <span className="text-lg text-muted-foreground">Auditoría completa de quién accede a qué, y cuándo</span>
-              </div>
-            </div>
-          </div>
-
-          {/* PILLAR 2: TIME SAVED */}
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="p-3 rounded-xl bg-brand-coral/10 border border-brand-coral/20">
-                <Clock className="w-8 h-8 text-brand-coral" />
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-                El 95% de tu trabajo administrativo desaparece.
-              </h2>
-            </div>
-            
-            <div className="grid sm:grid-cols-2 gap-4 mb-6">
-              <div className="flex items-start gap-3 p-4 rounded-lg bg-bg-elevated border border-muted/20">
-                <FileSearch className="w-5 h-5 text-brand-coral flex-shrink-0 mt-0.5" />
-                <span className="text-foreground">Extraen plazos de correos y documentos automáticamente</span>
-              </div>
-              <div className="flex items-start gap-3 p-4 rounded-lg bg-bg-elevated border border-muted/20">
-                <BarChart3 className="w-5 h-5 text-brand-coral flex-shrink-0 mt-0.5" />
-                <span className="text-foreground">Organizan expedientes mientras crece tu firma</span>
-              </div>
-              <div className="flex items-start gap-3 p-4 rounded-lg bg-bg-elevated border border-muted/20">
-                <Eye className="w-5 h-5 text-brand-coral flex-shrink-0 mt-0.5" />
-                <span className="text-foreground">Rastrean qué está en riesgo antes de que te des cuenta</span>
-              </div>
-              <div className="flex items-start gap-3 p-4 rounded-lg bg-bg-elevated border border-muted/20">
-                <Brain className="w-5 h-5 text-brand-coral flex-shrink-0 mt-0.5" />
-                <span className="text-foreground">Aprenden tus procesos y se adaptan</span>
-              </div>
-            </div>
-          </div>
-
-          {/* PILLAR 3: DOCSIER 101 */}
+          {/* PILLAR 1: DOCSIER 101 */}
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-8">
               Docsier 101
@@ -131,6 +73,64 @@ export const PillarsSection = () => {
                 <p className="text-muted-foreground">
                   Conexiones entre documentos, casos y clientes. Visualiza tu panorama completo.
                 </p>
+              </div>
+            </div>
+          </div>
+
+          {/* PILLAR 2: TIME SAVED */}
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 rounded-xl bg-brand-coral/10 border border-brand-coral/20">
+                <Clock className="w-8 h-8 text-brand-coral" />
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+                El 95% de tu trabajo administrativo desaparece.
+              </h2>
+            </div>
+            
+            <div className="grid sm:grid-cols-2 gap-4 mb-6">
+              <div className="flex items-start gap-3 p-4 rounded-lg bg-bg-elevated border border-muted/20">
+                <FileSearch className="w-5 h-5 text-brand-coral flex-shrink-0 mt-0.5" />
+                <span className="text-foreground">Extraen plazos de correos y documentos automáticamente</span>
+              </div>
+              <div className="flex items-start gap-3 p-4 rounded-lg bg-bg-elevated border border-muted/20">
+                <BarChart3 className="w-5 h-5 text-brand-coral flex-shrink-0 mt-0.5" />
+                <span className="text-foreground">Organizan expedientes mientras crece tu firma</span>
+              </div>
+              <div className="flex items-start gap-3 p-4 rounded-lg bg-bg-elevated border border-muted/20">
+                <Eye className="w-5 h-5 text-brand-coral flex-shrink-0 mt-0.5" />
+                <span className="text-foreground">Rastrean qué está en riesgo antes de que te des cuenta</span>
+              </div>
+              <div className="flex items-start gap-3 p-4 rounded-lg bg-bg-elevated border border-muted/20">
+                <Brain className="w-5 h-5 text-brand-coral flex-shrink-0 mt-0.5" />
+                <span className="text-foreground">Aprenden tus procesos y se adaptan</span>
+              </div>
+            </div>
+          </div>
+
+          {/* PILLAR 3: SECURITY */}
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 rounded-xl bg-brand-sage/10 border border-brand-sage/20">
+                <Shield className="w-8 h-8 text-brand-sage" />
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+                Tu información nunca abandona tu firma.
+              </h2>
+            </div>
+            
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <Check className="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5" />
+                <span className="text-lg text-muted-foreground">Encriptación del lado del servidor</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <Check className="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5" />
+                <span className="text-lg text-muted-foreground">Ni siquiera nosotros podemos leer tus datos</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <Check className="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5" />
+                <span className="text-lg text-muted-foreground">Auditoría completa de quién accede a qué, y cuándo</span>
               </div>
             </div>
           </div>
