@@ -131,7 +131,7 @@
   }
 
   .glass-nav {
-    @apply backdrop-blur-xl bg-background/80 border-b;
+    @apply backdrop-blur-lg bg-background/80 border-b;
     border-color: hsl(var(--divider));
   }
 
