@@ -6,10 +6,10 @@ import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
-import { CalculatorInputs, ClientScenario } from "./types";
+import { CalculatorInputs } from "./types";
 import { 
   Calculator, TrendingDown, ChevronLeft, ChevronRight, 
-  ArrowLeft, Share2, X 
+  X, Equal, Minus, Info
 } from "lucide-react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 
@@ -63,72 +63,16 @@ export const LeakageCalculatorModal = ({ open, onOpenChange }: LeakageCalculator
   };
 
   // Calculations
-  const annualAdminHours = inputs.adminHoursPerWeek * 52;
-  const adminCostPerHour = inputs.hourlyRate * 0.85;
-  const annualAdminCost = annualAdminHours * adminCostPerHour;
-
-  // Client scenarios
-  const scenarios: ClientScenario[] = [
-    {
-      type: "Cliente corporativo, bajo mantenimiento",
-      fee: 12000,
-      adminHours: 8,
-      profit: 0,
-      margin: 0,
-      status: "profit",
-    },
-    {
-      type: "Cliente regular, fricción media",
-      fee: 4000,
-      adminHours: 15,
-      profit: 0,
-      margin: 0,
-      status: "profit",
-    },
-    {
-      type: "Cliente pequeño, alta fricción",
-      fee: 2000,
-      adminHours: 20,
-      profit: 0,
-      margin: 0,
-      status: "warning",
-    },
-    {
-      type: "Referido familiar, fricción extrema",
-      fee: 1500,
-      adminHours: 25,
-      profit: 0,
-      margin: 0,
-      status: "loss",
-    },
-    {
-      type: "Cliente recurrente, baja fricción",
-      fee: 7000,
-      adminHours: 5,
-      profit: 0,
-      margin: 0,
-      status: "profit",
-    },
-  ];
-
-  // Calculate profits for scenarios
-  scenarios.forEach((scenario) => {
-    scenario.profit = scenario.fee - (scenario.adminHours * inputs.hourlyRate);
-    scenario.margin = (scenario.profit / scenario.fee) * 100;
-
-    if (scenario.profit < 0) {
-      scenario.status = "loss";
-    } else if (scenario.margin < 20) {
-      scenario.status = "warning";
-    } else {
-      scenario.status = "profit";
-    }
-  });
+  const weeksPerYear = 52;
+  const annualAdminHours = inputs.adminHoursPerWeek * weeksPerYear;
+  const weeklyCost = inputs.adminHoursPerWeek * inputs.hourlyRate;
+  const annualAdminCost = weeklyCost * weeksPerYear;
 
   // Annual projections
   const avgMatterFee = 4000;
   const estimatedRevenue = inputs.activeMatters * avgMatterFee;
   const actualProfit = estimatedRevenue - annualAdminCost;
+  const lossPercentage = (annualAdminCost / estimatedRevenue) * 100;
 
   // Time distribution data
   const totalWeeklyHours = 40;
@@ -138,25 +82,9 @@ export const LeakageCalculatorModal = ({ open, onOpenChange }: LeakageCalculator
     { name: "Trabajo Administrativo", value: inputs.adminHoursPerWeek, color: "hsl(var(--destructive))" },
   ];
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "profit": return "text-success";
-      case "warning": return "text-warning";
-      case "loss": return "text-destructive";
-      default: return "text-foreground";
-    }
-  };
-
-  const getStatusBg = (status: string) => {
-    switch (status) {
-      case "profit": return "bg-success/10 border-success/20";
-      case "warning": return "bg-warning/10 border-warning/20";
-      case "loss": return "bg-destructive/10 border-destructive/20";
-      default: return "bg-muted";
-    }
-  };
-
   const progress = (step / 3) * 100;
+
+  const formatCurrency = (amount: number) => `$${amount.toLocaleString()}`;
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -230,7 +158,7 @@ export const LeakageCalculatorModal = ({ open, onOpenChange }: LeakageCalculator
                   <div className="space-y-6">
                     <div>
                       <h2 className="text-2xl font-bold text-foreground mb-2">
-                        ¿Cuántos asuntos billables tienes activos?
+                        ¿Cuántos asuntos cobrables (honorarios) tienes activos por semana?
                       </h2>
                       <p className="text-muted-foreground">
                         Incluye todos los casos en los que estás trabajando
@@ -334,7 +262,7 @@ export const LeakageCalculatorModal = ({ open, onOpenChange }: LeakageCalculator
               {/* Hero */}
               <div className="text-center space-y-2">
                 <h2 className="text-3xl font-bold text-destructive">
-                  Estás Perdiendo ${annualAdminCost.toLocaleString()}/año
+                  Estás Perdiendo {formatCurrency(annualAdminCost)}/año
                 </h2>
                 <p className="text-muted-foreground">
                   Por carga administrativa que podrías eliminar
@@ -364,50 +292,150 @@ export const LeakageCalculatorModal = ({ open, onOpenChange }: LeakageCalculator
                 </ResponsiveContainer>
               </Card>
 
-              {/* Client Scenarios */}
+              {/* Mathematical Breakdown */}
               <Card className="p-4">
-                <h3 className="text-lg font-bold mb-4">Análisis por Tipo de Cliente</h3>
-                <div className="space-y-2">
-                  {scenarios.map((scenario, index) => (
-                    <div
-                      key={index}
-                      className={`p-3 rounded-lg border ${getStatusBg(scenario.status)}`}
-                    >
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <p className="font-medium text-sm">{scenario.type}</p>
-                          <p className="text-xs text-muted-foreground">
-                            ${scenario.fee.toLocaleString()} | {scenario.adminHours}h admin
-                          </p>
-                        </div>
-                        <div className="text-right">
-                          <p className={`text-lg font-bold ${getStatusColor(scenario.status)}`}>
-                            {scenario.profit >= 0 ? "+" : ""}${scenario.profit.toLocaleString()}
-                          </p>
-                          <p className={`text-xs ${getStatusColor(scenario.status)}`}>
-                            {scenario.margin.toFixed(0)}% margen
-                          </p>
-                        </div>
+                <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                  <Calculator className="w-5 h-5 text-primary" />
+                  Desglose Matemático
+                </h3>
+                <div className="space-y-4">
+                  {/* Step 1: Weekly Cost */}
+                  <div className="space-y-2">
+                    <p className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                      <span className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center font-bold">1</span>
+                      Costo Semanal
+                    </p>
+                    <div className="bg-muted/50 p-3 rounded-lg text-sm space-y-1">
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        <span className="px-2 py-1 bg-background rounded border border-border text-xs">
+                          {inputs.adminHoursPerWeek} hrs/sem
+                        </span>
+                        <span className="text-muted-foreground">×</span>
+                        <span className="px-2 py-1 bg-background rounded border border-border text-xs">
+                          {formatCurrency(inputs.hourlyRate)}/hr
+                        </span>
+                        <Equal className="w-3 h-3 text-muted-foreground" />
+                        <span className="px-2 py-1 bg-destructive/10 rounded border border-destructive/30 text-destructive font-bold text-xs">
+                          {formatCurrency(weeklyCost)}/sem
+                        </span>
                       </div>
                     </div>
-                  ))}
+                  </div>
+
+                  {/* Step 2: Annual Cost */}
+                  <div className="space-y-2">
+                    <p className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                      <span className="w-5 h-5 rounded-full bg-destructive/20 text-destructive text-xs flex items-center justify-center font-bold">2</span>
+                      Costo Anual de Overhead
+                    </p>
+                    <div className="bg-muted/50 p-3 rounded-lg text-sm space-y-1">
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        <span className="px-2 py-1 bg-background rounded border border-border text-xs">
+                          {formatCurrency(weeklyCost)}/sem
+                        </span>
+                        <span className="text-muted-foreground">×</span>
+                        <span className="px-2 py-1 bg-background rounded border border-border text-xs">
+                          {weeksPerYear} semanas
+                        </span>
+                        <Equal className="w-3 h-3 text-muted-foreground" />
+                        <span className="px-2 py-1 bg-destructive/10 rounded border border-destructive/30 text-destructive font-bold">
+                          {formatCurrency(annualAdminCost)}/año
+                        </span>
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-2 flex items-start gap-1">
+                        <Info className="w-3 h-3 mt-0.5 flex-shrink-0" />
+                        {annualAdminHours} horas anuales en tareas no facturables
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Step 3: Revenue */}
+                  <div className="space-y-2">
+                    <p className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                      <span className="w-5 h-5 rounded-full bg-success/20 text-success text-xs flex items-center justify-center font-bold">3</span>
+                      Ingresos Brutos Estimados
+                    </p>
+                    <div className="bg-muted/50 p-3 rounded-lg text-sm space-y-1">
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        <span className="px-2 py-1 bg-background rounded border border-border text-xs">
+                          {inputs.activeMatters} asuntos
+                        </span>
+                        <span className="text-muted-foreground">×</span>
+                        <span className="px-2 py-1 bg-background rounded border border-border text-xs">
+                          {formatCurrency(avgMatterFee)}/asunto
+                        </span>
+                        <Equal className="w-3 h-3 text-muted-foreground" />
+                        <span className="px-2 py-1 bg-success/10 rounded border border-success/30 text-success font-bold">
+                          {formatCurrency(estimatedRevenue)}/año
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Step 4: Real Profit */}
+                  <div className="space-y-2">
+                    <p className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                      <span className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center font-bold">4</span>
+                      Ganancia Real
+                    </p>
+                    <div className="bg-muted/50 p-3 rounded-lg text-sm space-y-1">
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        <span className="px-2 py-1 bg-success/10 rounded border border-success/30 text-success font-bold text-xs">
+                          {formatCurrency(estimatedRevenue)}
+                        </span>
+                        <Minus className="w-3 h-3 text-muted-foreground" />
+                        <span className="px-2 py-1 bg-destructive/10 rounded border border-destructive/30 text-destructive font-bold text-xs">
+                          {formatCurrency(annualAdminCost)}
+                        </span>
+                        <Equal className="w-3 h-3 text-muted-foreground" />
+                        <span className="px-2 py-1 bg-primary/10 rounded border border-primary/30 text-primary font-bold">
+                          {formatCurrency(actualProfit)}/año
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Step 5: Loss Percentage */}
+                  <div className="space-y-2">
+                    <p className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                      <span className="w-5 h-5 rounded-full bg-warning/20 text-warning text-xs flex items-center justify-center font-bold">5</span>
+                      Porcentaje de Pérdida
+                    </p>
+                    <div className="bg-muted/50 p-3 rounded-lg text-sm">
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        <span className="text-muted-foreground">(</span>
+                        <span className="text-destructive font-medium">{formatCurrency(annualAdminCost)}</span>
+                        <span className="text-muted-foreground">÷</span>
+                        <span className="text-success font-medium">{formatCurrency(estimatedRevenue)}</span>
+                        <span className="text-muted-foreground">) × 100 =</span>
+                        <span className="px-2 py-1 bg-destructive/10 rounded border border-destructive/30 text-destructive font-bold">
+                          {lossPercentage.toFixed(1)}%
+                        </span>
+                      </div>
+                      <p className="text-xs text-destructive mt-2">
+                        El overhead consume el {lossPercentage.toFixed(1)}% de tus ingresos brutos.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </Card>
 
-              {/* Annual Impact */}
+              {/* Annual Impact Summary */}
               <Card className="p-5 bg-brand-coral text-white">
-                <h3 className="text-lg font-bold mb-3">Impacto Anual</h3>
+                <h3 className="text-lg font-bold mb-3">Resumen de Impacto</h3>
                 <div className="space-y-2 text-sm">
-                  <p>
-                    Tus {inputs.activeMatters} asuntos generan{" "}
-                    <span className="font-bold">${estimatedRevenue.toLocaleString()}</span> brutos...
-                  </p>
-                  <p>
-                    ...pero gastas <span className="font-bold">${annualAdminCost.toLocaleString()}</span> en trabajo admin...
-                  </p>
-                  <p className="text-xl font-bold pt-3 border-t border-white/20">
-                    Tu ganancia real: ${actualProfit.toLocaleString()}
-                  </p>
+                  <div className="flex justify-between">
+                    <span>Ingresos brutos:</span>
+                    <span className="font-bold">{formatCurrency(estimatedRevenue)}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Overhead administrativo:</span>
+                    <span className="font-bold">-{formatCurrency(annualAdminCost)}</span>
+                  </div>
+                  <div className="flex justify-between pt-2 border-t border-white/20 text-lg">
+                    <span>Ganancia real:</span>
+                    <span className="font-bold">{formatCurrency(actualProfit)}</span>
+                  </div>
                 </div>
               </Card>
 
