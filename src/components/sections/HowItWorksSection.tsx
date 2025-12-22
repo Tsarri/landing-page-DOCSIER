@@ -40,12 +40,9 @@ export const HowItWorksSection = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground text-center mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground text-center mb-12">
             Empieza en minutos.
           </h2>
-          <p className="text-xl text-muted-foreground text-center mb-12">
-            Gemini configura automáticamente tu espacio de trabajo.
-          </p>
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {steps.map((step) => (

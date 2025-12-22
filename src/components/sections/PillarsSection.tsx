@@ -85,7 +85,7 @@ export const PillarsSection = () => {
                 <Lightbulb className="w-8 h-8 text-brand-blue-gray" />
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-                Recupera tiempo perdido y elimina errores antes de que sucedan.
+                Zero entrada de datos manual. Tu firma de siempre sin peso muerto.
               </h2>
             </div>
           </div>
