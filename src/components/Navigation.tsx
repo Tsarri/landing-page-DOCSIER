@@ -20,8 +20,14 @@ export const Navigation = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 glass-nav">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <div className="flex-shrink-0">
+            {/* Login + Logo */}
+            <div className="flex items-center gap-3">
+              <Button
+                size="sm"
+                className="bg-brand-coral hover:bg-brand-coral-hover text-white"
+              >
+                Iniciar Sesión
+              </Button>
               <span className="text-xl font-bold text-brand-coral tracking-tight">
                 DOCSIER
               </span>
