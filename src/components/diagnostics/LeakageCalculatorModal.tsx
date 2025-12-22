@@ -9,7 +9,7 @@ import { Progress } from "@/components/ui/progress";
 import { CalculatorInputs } from "./types";
 import { 
   Calculator, TrendingDown, ChevronLeft, ChevronRight, 
-  X, Equal, Minus, Info
+  X, Equal, Minus, Info, Share2, UserPlus, Mail
 } from "lucide-react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 
@@ -440,13 +440,29 @@ export const LeakageCalculatorModal = ({ open, onOpenChange }: LeakageCalculator
               </Card>
 
               {/* Actions */}
-              <div className="flex gap-3 pt-2">
-                <Button variant="outline" onClick={handleRestart} className="flex-1">
-                  Recalcular
-                </Button>
-                <Button onClick={handleClose} className="flex-1 bg-brand-coral hover:bg-brand-coral/90">
-                  Cerrar
-                </Button>
+              <div className="space-y-3 pt-2">
+                <div className="grid grid-cols-1 gap-2">
+                  <Button variant="outline" className="w-full h-12 justify-start gap-3">
+                    <Mail className="w-5 h-5 text-brand-coral" />
+                    <span>Enviar PDF del reporte a mi correo</span>
+                  </Button>
+                  <Button variant="outline" className="w-full h-12 justify-start gap-3">
+                    <UserPlus className="w-5 h-5 text-brand-coral" />
+                    <span>Registrar mi perfil en la plataforma</span>
+                  </Button>
+                  <Button variant="outline" className="w-full h-12 justify-start gap-3">
+                    <Share2 className="w-5 h-5 text-brand-coral" />
+                    <span>Compartir con un amigo</span>
+                  </Button>
+                </div>
+                <div className="flex gap-3">
+                  <Button variant="ghost" onClick={handleRestart} className="flex-1">
+                    Recalcular
+                  </Button>
+                  <Button onClick={handleClose} className="flex-1 bg-brand-coral hover:bg-brand-coral/90">
+                    Cerrar
+                  </Button>
+                </div>
               </div>
             </div>
           )}
