@@ -76,10 +76,6 @@ export const PillarsSection = () => {
                 <span className="text-foreground">Aprenden tus procesos y se adaptan</span>
               </div>
             </div>
-            
-            <p className="text-lg font-medium text-brand-coral">
-              Zero entrada de datos manual. Tu firma de siempre sin peso muerto.
-            </p>
           </div>
 
           {/* PILLAR 3: INSIGHTS */}
