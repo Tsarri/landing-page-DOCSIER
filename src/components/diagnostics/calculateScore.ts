@@ -1,6 +1,7 @@
 import { AssessmentData, AssessmentScore, Recommendation } from "./types";
 
 export const calculateScore = (data: AssessmentData): AssessmentScore => {
+  console.log("calculateScore input data:", JSON.stringify(data, null, 2));
   let baseScore = 5.0;
 
   // Parse numeric values
@@ -71,7 +72,7 @@ export const calculateScore = (data: AssessmentData): AssessmentScore => {
   // Generate recommendations
   const recommendations = generateRecommendations(data, total);
 
-  return {
+  const result = {
     total,
     adminBurden,
     infrastructureMaturity,
@@ -81,6 +82,17 @@ export const calculateScore = (data: AssessmentData): AssessmentScore => {
     timeValue,
     recommendations,
   };
+  
+  console.log("calculateScore output:", {
+    total,
+    adminBurden,
+    infrastructureMaturity,
+    taxCompliance,
+    capacityCeiling,
+    interpretation
+  });
+  
+  return result;
 };
 
 const calculateAdminBurden = (data: AssessmentData): number => {
