@@ -231,10 +231,10 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
 
                     <div className="space-y-4">
                       <div>
-                        <Label>¿Cuántos clientes activos tienes en total?</Label>
+                        <Label>¿Cuántos casos/sociedades/clientes manejas por semana?</Label>
                         <Input
                           type="number"
-                          placeholder="ej., 12"
+                          placeholder="ej., 10"
                           value={data.activeClients}
                           onChange={(e) => updateData('activeClients', e.target.value)}
                           className="mt-2"
@@ -250,30 +250,6 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
                           onChange={(e) => updateData('clientCountries', e.target.value)}
                           className="mt-2"
                         />
-                      </div>
-
-                      <div>
-                        <Label>¿En cuántas jurisdicciones fiscales tienes obligaciones?</Label>
-                        <Input
-                          type="number"
-                          placeholder="ej., 2"
-                          value={data.taxJurisdictions}
-                          onChange={(e) => updateData('taxJurisdictions', e.target.value)}
-                          className="mt-2"
-                        />
-                      </div>
-
-                      <div>
-                        <Label>¿Tienes diferentes precios o plantillas para diferentes regiones?</Label>
-                        <Select value={data.regionalTemplates} onValueChange={(v) => updateData('regionalTemplates', v)}>
-                          <SelectTrigger className="mt-2">
-                            <SelectValue placeholder="Selecciona respuesta" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="yes">Sí</SelectItem>
-                            <SelectItem value="no">No</SelectItem>
-                          </SelectContent>
-                        </Select>
                       </div>
                     </div>
                   </div>
@@ -331,23 +307,6 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
                         </Select>
                       </div>
 
-                      <div>
-                        <Label>¿Qué tan seguro estás de que podrías pasar una auditoría fiscal?</Label>
-                        <div className="mt-4 space-y-2">
-                          <Slider
-                            value={[data.taxConfidence]}
-                            onValueChange={([v]) => updateData('taxConfidence', v)}
-                            max={10}
-                            min={1}
-                            step={1}
-                          />
-                          <div className="flex justify-between text-xs text-muted-foreground">
-                            <span>Nada seguro</span>
-                            <span className="font-semibold text-foreground">{data.taxConfidence}/10</span>
-                            <span>Muy seguro</span>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 )}
@@ -360,21 +319,6 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
                     </div>
 
                     <div className="space-y-4">
-                      <div>
-                        <Label>¿Cuántas fuentes de ingreso adicionales podrías agregar ahora?</Label>
-                        <Select value={data.additionalStreams} onValueChange={(v) => updateData('additionalStreams', v)}>
-                          <SelectTrigger className="mt-2">
-                            <SelectValue placeholder="Selecciona número" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="0">No puedo agregar más</SelectItem>
-                            <SelectItem value="1">1 más</SelectItem>
-                            <SelectItem value="2">2 más</SelectItem>
-                            <SelectItem value="3+">3+ más</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
                       <div>
                         <Label>¿Qué te impide agregar más? (Selecciona todas)</Label>
                         <div className="mt-3 space-y-2">
