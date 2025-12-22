@@ -31,7 +31,7 @@ export const SolutionSection = () => {
           {[...Array(6)].map((_, i) => (
             <div
               key={`rc-pulse-${i}`}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-coral/20 animate-radar-pulse"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-sage/20 animate-radar-pulse"
               style={{
                 animationDelay: `${i * 2}s`,
                 width: '100px',
@@ -46,7 +46,7 @@ export const SolutionSection = () => {
           {[...Array(4)].map((_, i) => (
             <div
               key={`tl-pulse-${i}`}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-purple/15 animate-radar-pulse-slow"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-blue-gray/20 animate-radar-pulse-slow"
               style={{
                 animationDelay: `${i * 3}s`,
                 width: '80px',
@@ -61,7 +61,7 @@ export const SolutionSection = () => {
           {[...Array(4)].map((_, i) => (
             <div
               key={`bl-pulse-${i}`}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-sage/10 animate-radar-pulse-slow"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-sage/15 animate-radar-pulse-slow"
               style={{
                 animationDelay: `${i * 2.5 + 1}s`,
                 width: '60px',
