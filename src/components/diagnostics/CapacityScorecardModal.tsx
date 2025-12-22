@@ -12,7 +12,7 @@ import { AssessmentData, AssessmentScore } from "./types";
 import { calculateScore } from "./calculateScore";
 import { 
   BarChart3, Clock, TrendingUp, ChevronLeft, ChevronRight, 
-  AlertCircle, Settings, Shield, Share2, Lock, X 
+  AlertCircle, Settings, Shield, Share2, Lock, X, Calculator, DollarSign
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
@@ -494,6 +494,97 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
                   </div>
                 </Card>
               </div>
+
+              {/* Calculation Breakdown - Algebraic Explanation */}
+              {score.breakdown && (
+                <div className="space-y-3">
+                  <h3 className="font-bold text-foreground flex items-center gap-2">
+                    <Calculator className="w-4 h-4" />
+                    Cómo calculamos tu puntuación
+                  </h3>
+                  
+                  {/* Score Formula */}
+                  <Card className="p-4 bg-muted/50">
+                    <div className="space-y-3">
+                      <div className="text-sm font-medium text-muted-foreground">Fórmula de Puntuación:</div>
+                      <div className="font-mono text-sm bg-background p-3 rounded-lg border overflow-x-auto">
+                        <div className="text-brand-sage">Puntuación = Base − Penalizaciones + Bonificaciones</div>
+                        <div className="mt-2 text-muted-foreground">
+                          = {score.breakdown.baseScore.toFixed(1)} − {score.breakdown.unansweredPenalty.toFixed(1)} (sin respuesta) 
+                          − {score.breakdown.infrastructurePenalty.toFixed(1)} (infraestructura) 
+                          − {score.breakdown.efficiencyPenalty.toFixed(1)} (eficiencia) 
+                          − {score.breakdown.growthPenalty.toFixed(1)} (crecimiento) 
+                          + {score.breakdown.capacityBonus.toFixed(1)} (capacidad) 
+                          + {score.breakdown.optimismBonus.toFixed(1)} (optimismo)
+                        </div>
+                        <div className="mt-2 text-foreground font-semibold">
+                          = {score.total.toFixed(1)} / 10
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+
+                  {/* Cost Calculation */}
+                  <Card className="p-4 bg-destructive/5 border-destructive/20">
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 text-sm font-medium text-destructive">
+                        <DollarSign className="w-4 h-4" />
+                        Costo Anual de Horas Perdidas
+                      </div>
+                      <div className="font-mono text-sm bg-background p-3 rounded-lg border overflow-x-auto">
+                        <div className="text-brand-sage">Costo Anual = (Horas Admin + Horas Documentación) × Semanas × Tarifa</div>
+                        <div className="mt-2 text-muted-foreground">
+                          = ({score.breakdown.adminHoursPerWeek.toFixed(1)} + {score.breakdown.docHoursPerWeek.toFixed(1)}) hrs/semana × {score.breakdown.weeksPerYear} semanas × ${score.breakdown.hourlyRate}/hr
+                        </div>
+                        <div className="mt-2 text-muted-foreground">
+                          = {score.breakdown.totalLostHoursPerWeek.toFixed(1)} hrs/semana × {score.breakdown.weeksPerYear} semanas × ${score.breakdown.hourlyRate}/hr
+                        </div>
+                        <div className="mt-2 text-destructive font-semibold">
+                          = ${score.breakdown.annualCost.toLocaleString()} USD / año
+                        </div>
+                      </div>
+                      <p className="text-xs text-muted-foreground">
+                        Estas son {Math.round(score.breakdown.totalLostHoursPerWeek * score.breakdown.weeksPerYear)} horas al año que podrías dedicar a trabajo facturable.
+                      </p>
+                    </div>
+                  </Card>
+
+                  {/* Score Components Legend */}
+                  <Card className="p-4">
+                    <div className="text-sm font-medium text-muted-foreground mb-3">Desglose de Componentes:</div>
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div className="flex items-center justify-between p-2 bg-muted/50 rounded">
+                        <span>Base inicial:</span>
+                        <span className="font-mono font-semibold">{score.breakdown.baseScore.toFixed(1)}</span>
+                      </div>
+                      <div className="flex items-center justify-between p-2 bg-destructive/10 rounded">
+                        <span>Sin responder:</span>
+                        <span className="font-mono font-semibold text-destructive">−{score.breakdown.unansweredPenalty.toFixed(1)}</span>
+                      </div>
+                      <div className="flex items-center justify-between p-2 bg-brand-sage/10 rounded">
+                        <span>Capacidad:</span>
+                        <span className="font-mono font-semibold text-brand-sage">+{score.breakdown.capacityBonus.toFixed(1)}</span>
+                      </div>
+                      <div className="flex items-center justify-between p-2 bg-destructive/10 rounded">
+                        <span>Infraestructura:</span>
+                        <span className="font-mono font-semibold text-destructive">−{score.breakdown.infrastructurePenalty.toFixed(1)}</span>
+                      </div>
+                      <div className="flex items-center justify-between p-2 bg-destructive/10 rounded">
+                        <span>Eficiencia:</span>
+                        <span className="font-mono font-semibold text-destructive">−{score.breakdown.efficiencyPenalty.toFixed(1)}</span>
+                      </div>
+                      <div className="flex items-center justify-between p-2 bg-destructive/10 rounded">
+                        <span>Crecimiento:</span>
+                        <span className="font-mono font-semibold text-destructive">−{score.breakdown.growthPenalty.toFixed(1)}</span>
+                      </div>
+                      <div className="flex items-center justify-between p-2 bg-brand-sage/10 rounded col-span-2">
+                        <span>Optimismo (4+ fuentes):</span>
+                        <span className="font-mono font-semibold text-brand-sage">+{score.breakdown.optimismBonus.toFixed(1)}</span>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+              )}
 
               {/* Recommendations */}
               {score.recommendations.length > 0 && (

@@ -27,6 +27,22 @@ export interface AssessmentData {
   freeTimeUse: string[];
 }
 
+export interface CalculationBreakdown {
+  baseScore: number;
+  unansweredPenalty: number;
+  capacityBonus: number;
+  infrastructurePenalty: number;
+  efficiencyPenalty: number;
+  growthPenalty: number;
+  optimismBonus: number;
+  adminHoursPerWeek: number;
+  docHoursPerWeek: number;
+  totalLostHoursPerWeek: number;
+  hourlyRate: number;
+  weeksPerYear: number;
+  annualCost: number;
+}
+
 export interface AssessmentScore {
   total: number;
   adminBurden: number;
@@ -36,6 +52,7 @@ export interface AssessmentScore {
   interpretation: string;
   timeValue: number;
   recommendations: Recommendation[];
+  breakdown: CalculationBreakdown;
 }
 
 export interface Recommendation {
