@@ -244,17 +244,6 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
                           className="mt-2"
                         />
                       </div>
-
-                      <div>
-                        <Label>¿En cuántos países diferentes están tus clientes?</Label>
-                        <Input
-                          type="number"
-                          placeholder="ej., 5"
-                          value={data.clientCountries}
-                          onChange={(e) => updateData('clientCountries', e.target.value)}
-                          className="mt-2"
-                        />
-                      </div>
                     </div>
                   </div>
                 )}
