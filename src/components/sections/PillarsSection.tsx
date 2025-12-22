@@ -1,4 +1,4 @@
-import { Shield, Clock, Lightbulb, Check, Eye, Brain, FileSearch, BarChart3 } from "lucide-react";
+import { Shield, Clock, Calendar, Folder, Link2, Check, Eye, Brain, FileSearch, BarChart3 } from "lucide-react";
 
 export const PillarsSection = () => {
   return (
@@ -78,15 +78,51 @@ export const PillarsSection = () => {
             </div>
           </div>
 
-          {/* PILLAR 3: INSIGHTS */}
+          {/* PILLAR 3: HOW IT WORKS */}
           <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="p-3 rounded-xl bg-brand-blue-gray/10 border border-brand-blue-gray/20">
-                <Lightbulb className="w-8 h-8 text-brand-blue-gray" />
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-8">
+              Cómo funciona
+            </h2>
+            
+            <div className="grid sm:grid-cols-3 gap-6">
+              {/* Box 1: Deadlines */}
+              <div className="p-6 rounded-xl bg-bg-elevated border border-muted/20 space-y-4">
+                <div className="p-3 rounded-xl bg-brand-blue-gray/10 border border-brand-blue-gray/20 w-fit">
+                  <Calendar className="w-6 h-6 text-brand-blue-gray" />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground">
+                  Reportes automáticos de fechas importantes
+                </h3>
+                <p className="text-muted-foreground">
+                  Plazos rastreados automáticamente. Nunca más correos perdidos con fechas límite.
+                </p>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-                Zero entrada de datos manual. Tu firma de siempre sin peso muerto.
-              </h2>
+
+              {/* Box 2: Documentation */}
+              <div className="p-6 rounded-xl bg-bg-elevated border border-muted/20 space-y-4">
+                <div className="p-3 rounded-xl bg-brand-sage/10 border border-brand-sage/20 w-fit">
+                  <Folder className="w-6 h-6 text-brand-sage" />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground">
+                  Documentación de procesos inteligente
+                </h3>
+                <p className="text-muted-foreground">
+                  Procesos estandarizados para organización de documentos. Tu archivo crece sin caos.
+                </p>
+              </div>
+
+              {/* Box 3: Context */}
+              <div className="p-6 rounded-xl bg-bg-elevated border border-muted/20 space-y-4">
+                <div className="p-3 rounded-xl bg-brand-coral/10 border border-brand-coral/20 w-fit">
+                  <Link2 className="w-6 h-6 text-brand-coral" />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground">
+                  Contexto inteligente
+                </h3>
+                <p className="text-muted-foreground">
+                  Conexiones entre documentos, casos y clientes. Visualiza tu panorama completo.
+                </p>
+              </div>
             </div>
           </div>
 
