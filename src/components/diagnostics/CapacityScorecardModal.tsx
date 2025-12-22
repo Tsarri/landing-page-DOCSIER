@@ -623,12 +623,46 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
               )}
 
               {/* Actions */}
-              <div className="flex gap-3 pt-4">
-                <Button variant="outline" onClick={handleRestart} className="flex-1">
+              <div className="space-y-3 pt-4">
+                <div className="flex gap-3">
+                  <Button 
+                    variant="outline" 
+                    onClick={() => {
+                      const shareText = `Mi puntuación de capacidad operativa es ${score.total.toFixed(1)}/10. Estoy perdiendo aproximadamente $${score.breakdown.annualCost.toLocaleString()} USD al año en horas administrativas. ¡Evalúa tu práctica!`;
+                      if (navigator.share) {
+                        navigator.share({
+                          title: 'Scorecard de Capacidad',
+                          text: shareText,
+                          url: window.location.href
+                        });
+                      } else {
+                        navigator.clipboard.writeText(shareText + ' ' + window.location.href);
+                        toast({
+                          title: "¡Enlace copiado!",
+                          description: "Comparte este enlace con un amigo."
+                        });
+                      }
+                    }} 
+                    className="flex-1"
+                  >
+                    <Share2 className="w-4 h-4 mr-2" />
+                    Compartir
+                  </Button>
+                  <Button 
+                    onClick={() => {
+                      toast({
+                        title: "¡Próximamente!",
+                        description: "La función de registro estará disponible pronto. Te notificaremos cuando esté lista."
+                      });
+                    }} 
+                    className="flex-1 bg-brand-coral hover:bg-brand-coral/90"
+                  >
+                    <Lock className="w-4 h-4 mr-2" />
+                    Registrarme
+                  </Button>
+                </div>
+                <Button variant="ghost" onClick={handleRestart} className="w-full text-muted-foreground">
                   Repetir Evaluación
-                </Button>
-                <Button onClick={handleClose} className="flex-1 bg-brand-coral hover:bg-brand-coral/90">
-                  Cerrar
                 </Button>
               </div>
             </div>
