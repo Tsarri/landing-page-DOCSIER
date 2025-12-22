@@ -22,7 +22,7 @@ interface CapacityScorecardModalProps {
 }
 
 type ViewState = 'start' | 'form' | 'results';
-const TOTAL_STEPS = 4;
+const TOTAL_STEPS = 3;
 
 export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecardModalProps) => {
   const [view, setView] = useState<ViewState>('start');
@@ -231,69 +231,6 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
 
                     <div className="space-y-4">
                       <div>
-                        <Label>¿Cuántas fuentes de ingreso activas tienes?</Label>
-                        <Input
-                          type="number"
-                          min="1"
-                          placeholder="ej., 3"
-                          value={data.incomeStreams}
-                          onChange={(e) => updateData('incomeStreams', e.target.value)}
-                          className="mt-2"
-                        />
-                      </div>
-
-                      <div>
-                        <Label>¿Cuánto tiempo llevas manejando múltiples fuentes?</Label>
-                        <Select value={data.yearsJuggling} onValueChange={(v) => updateData('yearsJuggling', v)}>
-                          <SelectTrigger className="mt-2">
-                            <SelectValue placeholder="Selecciona duración" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="<1">Menos de 1 año</SelectItem>
-                            <SelectItem value="1-2">1-2 años</SelectItem>
-                            <SelectItem value="3-5">3-5 años</SelectItem>
-                            <SelectItem value="5+">5+ años</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      <div>
-                        <Label>¿Dónde estás ubicado físicamente?</Label>
-                        <Input
-                          placeholder="ej., Ciudad de Panamá"
-                          value={data.location}
-                          onChange={(e) => updateData('location', e.target.value)}
-                          className="mt-2"
-                        />
-                      </div>
-
-                      <div>
-                        <Label>¿Desde cuántos países operas al año?</Label>
-                        <Select value={data.countriesPerYear} onValueChange={(v) => updateData('countriesPerYear', v)}>
-                          <SelectTrigger className="mt-2">
-                            <SelectValue placeholder="Selecciona número" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="1">1</SelectItem>
-                            <SelectItem value="2">2</SelectItem>
-                            <SelectItem value="3">3</SelectItem>
-                            <SelectItem value="4+">4+</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {currentStep === 2 && (
-                  <div className="space-y-5">
-                    <div>
-                      <h2 className="text-xl font-bold mb-1">Complejidad de Clientes</h2>
-                      <p className="text-sm text-muted-foreground">Entendiendo tu alcance operativo</p>
-                    </div>
-
-                    <div className="space-y-4">
-                      <div>
                         <Label>¿Cuántos clientes activos tienes en total?</Label>
                         <Input
                           type="number"
@@ -342,7 +279,7 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
                   </div>
                 )}
 
-                {currentStep === 3 && (
+                {currentStep === 2 && (
                   <div className="space-y-5">
                     <div>
                       <h2 className="text-xl font-bold mb-1">Carga Administrativa</h2>
@@ -415,7 +352,7 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
                   </div>
                 )}
 
-                {currentStep === 4 && (
+                {currentStep === 3 && (
                   <div className="space-y-5">
                     <div>
                       <h2 className="text-xl font-bold mb-1">Crecimiento y Capacidad</h2>
