@@ -20,20 +20,20 @@ export function LandingSection({ onStart }: LandingSectionProps) {
         </p>
       </div>
 
-      <div className="grid grid-cols-3 gap-3 max-w-2xl mx-auto">
-        <div className="bg-muted/50 rounded-lg p-4 text-center">
-          <p className="text-xl md:text-2xl font-bold text-primary">3 min</p>
-          <p className="text-sm text-muted-foreground">Para completar</p>
+      <div className="grid grid-cols-3 gap-2 md:gap-3 max-w-2xl mx-auto">
+        <div className="bg-muted/50 rounded-lg p-3 md:p-4 text-center">
+          <p className="text-lg md:text-2xl font-bold text-primary">3 min</p>
+          <p className="text-xs md:text-sm text-muted-foreground">Para completar</p>
         </div>
 
-        <div className="bg-muted/50 rounded-lg p-4 text-center">
-          <p className="text-xl md:text-2xl font-bold text-primary">Autodiagnóstico</p>
-          <p className="text-sm text-muted-foreground">Personalizado</p>
+        <div className="bg-muted/50 rounded-lg p-3 md:p-4 text-center">
+          <p className="text-sm md:text-2xl font-bold text-primary leading-tight">Autodiagnóstico</p>
+          <p className="text-xs md:text-sm text-muted-foreground">Personalizado</p>
         </div>
 
-        <div className="bg-muted/50 rounded-lg p-4 text-center">
-          <p className="text-xl md:text-2xl font-bold text-primary">PDF</p>
-          <p className="text-sm text-muted-foreground">Gratis</p>
+        <div className="bg-muted/50 rounded-lg p-3 md:p-4 text-center">
+          <p className="text-lg md:text-2xl font-bold text-primary">PDF</p>
+          <p className="text-xs md:text-sm text-muted-foreground">Gratis</p>
         </div>
       </div>
 
