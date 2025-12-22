@@ -35,19 +35,18 @@ export const PillarsSection = () => {
               No confiamos en promesas. Confiamos en matemáticas.
             </p>
             
-            <div className="space-y-4 text-lg text-muted-foreground">
-              <p>
-                Tus datos de clientes están encriptados en tu navegador antes de llegar a nuestros servidores. 
-                Ni siquiera nosotros podemos leerlos. No hay backdoors. No hay excepciones. 
-                Ni un subpoena del gobierno, ni un empleado malintencionado, ni una brecha de seguridad cambian esto.
-              </p>
-              <p>
-                Las APIs de Claude y Gemini que usamos nunca tocan tus datos sin encriptar. 
-                El análisis ocurre en tus servidores, no en los suyos.
-              </p>
-              <div className="flex items-center gap-3 pt-2">
-                <Check className="w-5 h-5 text-brand-sage flex-shrink-0" />
-                <span>Auditoría completa de quién accede a qué, y cuándo.</span>
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <Check className="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5" />
+                <span className="text-lg text-muted-foreground">Encriptación del lado del servidor</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <Check className="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5" />
+                <span className="text-lg text-muted-foreground">Ni siquiera nosotros podemos leer tus datos</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <Check className="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5" />
+                <span className="text-lg text-muted-foreground">Auditoría completa de quién accede a qué, y cuándo</span>
               </div>
             </div>
           </div>
