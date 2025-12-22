@@ -9,11 +9,11 @@ export const HeroSection = () => {
     <section className="relative min-h-screen flex items-center justify-center bg-background pt-16 overflow-hidden">
       {/* Dynamic animated background - matching AnimatedBackground */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Central radar pulse */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        {/* Hero: Top-left primary radar */}
+        <div className="absolute top-[25%] left-[20%]">
           {[...Array(6)].map((_, i) => (
             <div
-              key={`center-pulse-${i}`}
+              key={`tl-pulse-${i}`}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-coral/20 animate-radar-pulse"
               style={{
                 animationDelay: `${i * 2}s`,
@@ -24,11 +24,11 @@ export const HeroSection = () => {
           ))}
         </div>
 
-        {/* Secondary radar source - bottom left */}
-        <div className="absolute bottom-[20%] left-[15%]">
+        {/* Hero: Bottom-right secondary radar */}
+        <div className="absolute bottom-[30%] right-[15%]">
           {[...Array(4)].map((_, i) => (
             <div
-              key={`bl-pulse-${i}`}
+              key={`br-pulse-${i}`}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-purple/15 animate-radar-pulse-slow"
               style={{
                 animationDelay: `${i * 3}s`,
@@ -39,11 +39,11 @@ export const HeroSection = () => {
           ))}
         </div>
 
-        {/* Tertiary radar source - top right */}
-        <div className="absolute top-[30%] right-[20%]">
+        {/* Hero: Center-right tertiary radar */}
+        <div className="absolute top-[60%] right-[35%]">
           {[...Array(4)].map((_, i) => (
             <div
-              key={`tr-pulse-${i}`}
+              key={`cr-pulse-${i}`}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-sage/10 animate-radar-pulse-slow"
               style={{
                 animationDelay: `${i * 2.5 + 1}s`,

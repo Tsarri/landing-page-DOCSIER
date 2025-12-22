@@ -11,11 +11,11 @@ export const CTASection = () => {
       <section className="bg-background section-padding relative overflow-hidden">
         {/* Dynamic animated background - matching AnimatedBackground */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Central radar pulse */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          {/* CTA: Left-center primary radar */}
+          <div className="absolute top-[50%] left-[8%]">
             {[...Array(6)].map((_, i) => (
               <div
-                key={`center-${i}`}
+                key={`lc-pulse-${i}`}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-coral/20 animate-radar-pulse"
                 style={{
                   animationDelay: `${i * 2}s`,
@@ -26,11 +26,11 @@ export const CTASection = () => {
             ))}
           </div>
 
-          {/* Secondary radar source - bottom left */}
-          <div className="absolute bottom-[20%] left-[15%]">
+          {/* CTA: Top-right secondary radar */}
+          <div className="absolute top-[20%] right-[25%]">
             {[...Array(4)].map((_, i) => (
               <div
-                key={`left-${i}`}
+                key={`tr-pulse-${i}`}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-purple/15 animate-radar-pulse-slow"
                 style={{
                   animationDelay: `${i * 3}s`,
@@ -41,11 +41,11 @@ export const CTASection = () => {
             ))}
           </div>
 
-          {/* Tertiary radar source - top right */}
-          <div className="absolute top-[30%] right-[20%]">
+          {/* CTA: Bottom-right tertiary radar */}
+          <div className="absolute bottom-[25%] right-[12%]">
             {[...Array(4)].map((_, i) => (
               <div
-                key={`right-${i}`}
+                key={`br-pulse-${i}`}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-sage/10 animate-radar-pulse-slow"
                 style={{
                   animationDelay: `${i * 2.5 + 1}s`,
