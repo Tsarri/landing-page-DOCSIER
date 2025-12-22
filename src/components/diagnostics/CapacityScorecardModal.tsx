@@ -40,6 +40,8 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
     toolsUsed: "",
     missedDeadlines: "",
     taxConfidence: 5,
+    hoursLostToDocumentation: "",
+    repetitiveTasksPercentage: "",
     additionalStreams: "",
     growthBlockers: [],
     freeTimeUse: [],
@@ -93,6 +95,8 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
       toolsUsed: "",
       missedDeadlines: "",
       taxConfidence: 5,
+      hoursLostToDocumentation: "",
+      repetitiveTasksPercentage: "",
       additionalStreams: "",
       growthBlockers: [],
       freeTimeUse: [],
@@ -303,6 +307,36 @@ export const CapacityScorecardModal = ({ open, onOpenChange }: CapacityScorecard
                             <SelectItem value="sometimes">A veces</SelectItem>
                             <SelectItem value="often">Frecuentemente</SelectItem>
                             <SelectItem value="always">Siempre</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div>
+                        <Label>Tiempo perdido por documentación incompleta, documentos perdidos/mal organizados (horas por semana)</Label>
+                        <Select value={data.hoursLostToDocumentation} onValueChange={(v) => updateData('hoursLostToDocumentation', v)}>
+                          <SelectTrigger className="mt-2">
+                            <SelectValue placeholder="Selecciona horas" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="0-2">0-2 horas</SelectItem>
+                            <SelectItem value="2-5">2-5 horas</SelectItem>
+                            <SelectItem value="5-10">5-10 horas</SelectItem>
+                            <SelectItem value="10+">10+ horas</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div>
+                        <Label>Procesos no sistematizados (duplicación de trabajo) - ¿% de tu semana en tareas repetitivas?</Label>
+                        <Select value={data.repetitiveTasksPercentage} onValueChange={(v) => updateData('repetitiveTasksPercentage', v)}>
+                          <SelectTrigger className="mt-2">
+                            <SelectValue placeholder="Selecciona porcentaje" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="10-20%">10-20%</SelectItem>
+                            <SelectItem value="20-30%">20-30%</SelectItem>
+                            <SelectItem value="30-40%">30-40%</SelectItem>
+                            <SelectItem value="40%+">40%+</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>

@@ -17,6 +17,8 @@ export interface AssessmentData {
   toolsUsed: string;
   missedDeadlines: string;
   taxConfidence: number;
+  hoursLostToDocumentation: string;
+  repetitiveTasksPercentage: string;
 
   // Step 4: Growth & Capacity
   additionalStreams: string;
