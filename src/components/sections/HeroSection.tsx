@@ -6,8 +6,75 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center hero-gradient pt-16">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-screen flex items-center justify-center hero-gradient pt-16 overflow-hidden">
+      {/* Radar signal background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Central radar pulse */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={`center-pulse-${i}`}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-coral/20 animate-radar-pulse"
+              style={{
+                animationDelay: `${i * 1.2}s`,
+                width: '100px',
+                height: '100px',
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Top-left radar node */}
+        <div className="absolute top-[20%] left-[15%]">
+          {[...Array(4)].map((_, i) => (
+            <div
+              key={`tl-pulse-${i}`}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-sage/15 animate-radar-pulse-slow"
+              style={{
+                animationDelay: `${i * 1.8}s`,
+                width: '60px',
+                height: '60px',
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Bottom-right radar node */}
+        <div className="absolute bottom-[25%] right-[10%]">
+          {[...Array(4)].map((_, i) => (
+            <div
+              key={`br-pulse-${i}`}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-purple/20 animate-radar-pulse-slow"
+              style={{
+                animationDelay: `${i * 2}s`,
+                width: '50px',
+                height: '50px',
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Horizontal wave lines */}
+        {[...Array(5)].map((_, i) => (
+          <div
+            key={`wave-${i}`}
+            className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-coral/10 to-transparent animate-wave-horizontal"
+            style={{
+              top: `${10 + i * 20}%`,
+              animationDelay: `${i * 0.8}s`,
+            }}
+          />
+        ))}
+
+        {/* Connecting lines - network effect */}
+        <svg className="absolute inset-0 w-full h-full opacity-10">
+          <line x1="15%" y1="20%" x2="50%" y2="50%" stroke="currentColor" strokeWidth="0.5" className="text-brand-sage animate-pulse" />
+          <line x1="90%" y1="75%" x2="50%" y2="50%" stroke="currentColor" strokeWidth="0.5" className="text-brand-purple animate-pulse" style={{ animationDelay: '1s' }} />
+          <line x1="15%" y1="20%" x2="90%" y2="75%" stroke="currentColor" strokeWidth="0.3" className="text-brand-coral animate-pulse" style={{ animationDelay: '2s' }} />
+        </svg>
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mx-auto text-center space-y-8">
           {/* Eyebrow */}
           <p 
