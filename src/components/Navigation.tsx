@@ -31,7 +31,11 @@ export const Navigation = () => {
             <div className="flex items-center gap-2">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="secondary" size="sm" className="gap-1">
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="gap-1 bg-brand-sage/15 text-brand-sage hover:bg-brand-sage/25 hover:text-brand-sage border border-brand-sage/30"
+                  >
                     Auto-Diagnóstico
                     <ChevronDown className="h-4 w-4" />
                   </Button>
@@ -52,7 +56,9 @@ export const Navigation = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
               <Button
-                variant="nav"
+                variant="ghost"
+                size="sm"
+                className="bg-brand-blue-gray/15 text-brand-blue-gray hover:bg-brand-blue-gray/25 hover:text-brand-blue-gray border border-brand-blue-gray/30"
                 onClick={() => setNosotrosOpen(true)}
               >
                 Nosotros
