@@ -20,37 +20,67 @@ export const SolutionSection = () => {
     <section className="section-padding relative overflow-hidden">
       {/* Free-flowing dynamic background */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Flowing gradient blobs */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-coral/5 rounded-full blur-3xl animate-blob" />
-        <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-brand-sage/8 rounded-full blur-3xl animate-blob animation-delay-2000" />
-        <div className="absolute bottom-0 left-1/2 w-72 h-72 bg-brand-purple/5 rounded-full blur-3xl animate-blob animation-delay-4000" />
+        {/* Flowing gradient blobs - more visible */}
+        <div className="absolute -top-20 left-1/4 w-[500px] h-[500px] bg-brand-coral/10 rounded-full blur-3xl animate-blob" />
+        <div className="absolute top-1/3 -right-20 w-[400px] h-[400px] bg-brand-sage/15 rounded-full blur-3xl animate-blob animation-delay-2000" />
+        <div className="absolute -bottom-32 left-1/3 w-[450px] h-[450px] bg-brand-purple/10 rounded-full blur-3xl animate-blob animation-delay-4000" />
+        <div className="absolute top-1/2 left-10 w-64 h-64 bg-brand-coral/8 rounded-full blur-2xl animate-blob animation-delay-2000" />
+        
+        {/* Floating particles */}
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-2 h-2 bg-brand-sage/30 rounded-full animate-float"
+            style={{
+              left: `${10 + i * 12}%`,
+              top: `${20 + (i % 3) * 25}%`,
+              animationDelay: `${i * 0.5}s`,
+              animationDuration: `${3 + i * 0.5}s`,
+            }}
+          />
+        ))}
         
         {/* Flowing wave lines */}
-        <svg className="absolute inset-0 w-full h-full opacity-20" preserveAspectRatio="none">
+        <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1200 300">
           <path
-            d="M0,50 Q250,0 500,50 T1000,50 T1500,50"
+            d="M-100,150 Q200,50 400,150 T800,150 T1300,150"
             fill="none"
             stroke="url(#wave-gradient-1)"
-            strokeWidth="1"
+            strokeWidth="2"
             className="animate-flow-path"
+            style={{ strokeDasharray: 1000, strokeDashoffset: 1000 }}
           />
           <path
-            d="M0,100 Q200,150 400,100 T800,100 T1200,100"
+            d="M-100,200 Q150,250 350,200 T700,200 T1100,200 T1400,200"
             fill="none"
             stroke="url(#wave-gradient-2)"
-            strokeWidth="0.5"
+            strokeWidth="1.5"
             className="animate-flow-path-slow"
+            style={{ strokeDasharray: 1000, strokeDashoffset: 1000 }}
+          />
+          <path
+            d="M-50,100 Q300,30 500,100 T900,100 T1250,100"
+            fill="none"
+            stroke="url(#wave-gradient-3)"
+            strokeWidth="1"
+            className="animate-flow-path"
+            style={{ strokeDasharray: 1000, strokeDashoffset: 1000, animationDelay: '2s' }}
           />
           <defs>
             <linearGradient id="wave-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="hsl(var(--brand-coral))" stopOpacity="0" />
-              <stop offset="50%" stopColor="hsl(var(--brand-coral))" stopOpacity="0.5" />
+              <stop offset="50%" stopColor="hsl(var(--brand-coral))" stopOpacity="0.4" />
               <stop offset="100%" stopColor="hsl(var(--brand-coral))" stopOpacity="0" />
             </linearGradient>
             <linearGradient id="wave-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="hsl(var(--brand-sage))" stopOpacity="0" />
-              <stop offset="50%" stopColor="hsl(var(--brand-sage))" stopOpacity="0.4" />
+              <stop offset="50%" stopColor="hsl(var(--brand-sage))" stopOpacity="0.5" />
               <stop offset="100%" stopColor="hsl(var(--brand-sage))" stopOpacity="0" />
+            </linearGradient>
+            <linearGradient id="wave-gradient-3" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="hsl(var(--brand-purple))" stopOpacity="0" />
+              <stop offset="50%" stopColor="hsl(var(--brand-purple))" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="hsl(var(--brand-purple))" stopOpacity="0" />
             </linearGradient>
           </defs>
         </svg>
