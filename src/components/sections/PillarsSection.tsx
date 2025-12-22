@@ -54,13 +54,9 @@ export const PillarsSection = () => {
                 <Clock className="w-8 h-8 text-brand-coral" />
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-                El 75% de tu tiempo administrativo desaparece.
+                El 95% de tu trabajo administrativo desaparece.
               </h2>
             </div>
-            
-            <p className="text-xl text-muted-foreground mb-6">
-              Cuatro agentes IA observan tu trabajo mientras trabajas:
-            </p>
             
             <div className="grid sm:grid-cols-2 gap-4 mb-6">
               <div className="flex items-start gap-3 p-4 rounded-lg bg-bg-elevated border border-muted/20">
@@ -96,10 +92,6 @@ export const PillarsSection = () => {
                 Recupera tiempo perdido y elimina errores antes de que sucedan.
               </h2>
             </div>
-            
-            <p className="text-lg text-muted-foreground">
-              Tu ineficiencia operacional es una mina de oro de tiempo.
-            </p>
           </div>
 
         </div>
