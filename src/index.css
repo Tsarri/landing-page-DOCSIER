@@ -46,6 +46,10 @@
     --accent-foreground: 320 24% 6%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 0%;
 
     /* === BORDERS === */
     --border: 320 36% 24% / 0.3;
