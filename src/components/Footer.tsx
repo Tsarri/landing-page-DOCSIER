@@ -1,13 +1,20 @@
 export const Footer = () => {
   return (
-    <footer className="bg-background py-10 border-t border-muted/20">
+    <footer className="bg-background py-12 border-t border-muted/20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-sm text-muted-foreground">
-          <span className="font-medium text-foreground/60">DOCSIER</span>
-          <span className="hidden sm:inline">·</span>
-          <span>© {new Date().getFullYear()} Todos los derechos reservados</span>
-          <span className="hidden sm:inline">·</span>
-          <span>Hecho en Panamá 🇵🇦</span>
+        <div className="max-w-3xl mx-auto text-center space-y-4">
+          <p className="text-foreground font-medium">
+            <span className="text-xl font-semibold">DOCSIER</span>
+            <span className="text-muted-foreground"> — Para abogados independientes y microfirmas que prefieren operar limpiamente.</span>
+          </p>
+          
+          <p className="text-sm text-muted-foreground">
+            Hecho en Panamá 🇵🇦 • Seguridad sin transacciones.
+          </p>
+          
+          <p className="text-xs text-muted-foreground/60">
+            © {new Date().getFullYear()} DOCSIER. Todos los derechos reservados.
+          </p>
         </div>
       </div>
     </footer>
