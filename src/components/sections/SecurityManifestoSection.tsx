@@ -64,11 +64,11 @@ export const SecurityManifestoSection = () => {
             </div>
             
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-              Tu seguridad es la prioridad.
+              Seguridad es prioridad.
             </h2>
             
             <p className="text-lg text-muted-foreground">
-              La privacía es la infraestructura. No es una característica.
+              la privacidad es la infraestructura.
             </p>
           </div>
 
