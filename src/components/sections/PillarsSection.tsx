@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Shield, Clock, ArrowRight, Check, Eye, Brain, FileSearch, BarChart3 } from "lucide-react";
+import { Shield, Clock, ArrowRight, Eye, Brain, FileSearch, BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DiagnosticoModal } from "../DiagnosticoModal";
 
@@ -91,18 +91,9 @@ export const PillarsSection = () => {
               </div>
               
               <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5" />
-                  <span className="text-lg text-muted-foreground">Encriptación del lado del servidor</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5" />
-                  <span className="text-lg text-muted-foreground">Ni siquiera nosotros podemos leer tus datos</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5" />
-                  <span className="text-lg text-muted-foreground">Auditoría completa de quién accede a qué, y cuándo</span>
-                </div>
+                <p className="text-lg text-muted-foreground">Encriptación del lado del servidor</p>
+                <p className="text-lg text-muted-foreground">Ni siquiera nosotros podemos leer tus datos</p>
+                <p className="text-lg text-muted-foreground">Auditoría completa de quién accede a qué, y cuándo</p>
               </div>
             </div>
 
