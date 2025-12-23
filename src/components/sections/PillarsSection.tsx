@@ -62,19 +62,19 @@ export const PillarsSection = () => {
               <div className="grid sm:grid-cols-2 gap-4 mb-6">
                 <div className="flex items-start gap-3 p-4 rounded-lg bg-bg-elevated border border-muted/20">
                   <FileSearch className="w-5 h-5 text-brand-coral flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground">Extraen plazos de correos y documentos automáticamente</span>
+                  <span className="text-foreground">Inteligencia de procesos adaptada y personalizada para cada firma</span>
                 </div>
                 <div className="flex items-start gap-3 p-4 rounded-lg bg-bg-elevated border border-muted/20">
                   <BarChart3 className="w-5 h-5 text-brand-coral flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground">Organizan expedientes mientras crece tu firma</span>
+                  <span className="text-foreground">Extracción de metadata de documentos para reportes de plazos (deadlines)</span>
                 </div>
                 <div className="flex items-start gap-3 p-4 rounded-lg bg-bg-elevated border border-muted/20">
                   <Eye className="w-5 h-5 text-brand-coral flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground">Rastrean qué está en riesgo antes de que te des cuenta</span>
+                  <span className="text-foreground">Actualización y contexto inteligente del dossier de cada cliente/entidad</span>
                 </div>
                 <div className="flex items-start gap-3 p-4 rounded-lg bg-bg-elevated border border-muted/20">
                   <Brain className="w-5 h-5 text-brand-coral flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground">Aprenden tus procesos y se adaptan</span>
+                  <span className="text-foreground">Registro de datos, reportes de fechas críticas y gestión documental inteligente</span>
                 </div>
               </div>
             </div>
