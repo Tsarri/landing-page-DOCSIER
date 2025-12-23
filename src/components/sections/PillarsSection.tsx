@@ -89,12 +89,6 @@ export const PillarsSection = () => {
                   Tu información nunca abandona tu firma.
                 </h2>
               </div>
-              
-              <div className="space-y-3">
-                <p className="text-lg text-muted-foreground">Encriptación del lado del servidor</p>
-                <p className="text-lg text-muted-foreground">Ni siquiera nosotros podemos leer tus datos</p>
-                <p className="text-lg text-muted-foreground">Auditoría completa de quién accede a qué, y cuándo</p>
-              </div>
             </div>
 
           </div>
