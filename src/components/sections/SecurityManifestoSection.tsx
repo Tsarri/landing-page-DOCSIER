@@ -68,7 +68,7 @@ export const SecurityManifestoSection = () => {
             </h2>
             
             <p className="text-lg text-muted-foreground">
-              la privacidad es la infraestructura.
+              Privacidad como infraestructura.
             </p>
           </div>
 
