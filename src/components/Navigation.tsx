@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export const Navigation = () => {
+  const navigate = useNavigate();
   const [nosotrosOpen, setNosotrosOpen] = useState(false);
   const [capacityOpen, setCapacityOpen] = useState(false);
   const [leakageOpen, setLeakageOpen] = useState(false);
@@ -30,8 +31,9 @@ export const Navigation = () => {
                 variant="ghost"
                 size="sm"
                 className="bg-brand-coral/15 text-brand-coral hover:bg-brand-coral/25 hover:text-brand-coral border border-brand-coral/30"
+                onClick={() => navigate("/auth")}
               >
-                Iniciar Sesión
+                Iniciar Sesión / Crear Cuenta
               </Button>
             </div>
 
