@@ -8,8 +8,8 @@
   :root {
     /* === BRAND CORE === */
     --brand-coral: 354 93% 60%;
-    --brand-maroon: 340 48% 36%;
-    --brand-purple: 320 36% 24%;
+    --brand-maroon: 340 48% 52%;
+    --brand-purple: 320 36% 28%;
     --brand-sage: 100 36% 76%;
     --brand-blue-gray: 220 22% 63%;
 
@@ -20,7 +20,7 @@
     --accent-innovation: var(--brand-sage);
     --accent-neutral: var(--brand-blue-gray);
 
-    /* === BACKGROUNDS === */
+    /* === BACKGROUNDS (Dark Mode Default) === */
     --background: 320 24% 6%;
     --bg-secondary: 320 20% 9%;
     --bg-elevated: 320 18% 13%;
@@ -38,7 +38,7 @@
     --popover-foreground: 0 4% 96%;
     --primary: var(--brand-coral);
     --primary-foreground: 0 0% 100%;
-    --secondary: var(--brand-maroon);
+    --secondary: var(--brand-purple);
     --secondary-foreground: 0 0% 100%;
     --muted: 320 16% 16%;
     --muted-foreground: 220 22% 63%;
@@ -52,33 +52,103 @@
     --warning-foreground: 0 0% 0%;
 
     /* === BORDERS === */
-    --border: 320 36% 24% / 0.3;
+    --border: 320 36% 28% / 0.3;
     --border-emphasis: var(--brand-purple);
-    --input: 320 36% 24% / 0.3;
+    --input: 320 36% 28% / 0.3;
     --ring: var(--brand-coral);
     --divider: 220 22% 63% / 0.15;
 
     --radius: 0.5rem;
 
-    /* === SIDEBAR (keeping defaults) === */
+    /* === SIDEBAR === */
     --sidebar-background: 320 24% 6%;
     --sidebar-foreground: 0 4% 96%;
     --sidebar-primary: var(--brand-coral);
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 320 18% 13%;
     --sidebar-accent-foreground: 0 4% 96%;
-    --sidebar-border: 320 36% 24% / 0.3;
+    --sidebar-border: 320 36% 28% / 0.3;
     --sidebar-ring: var(--brand-coral);
 
     /* === CUSTOM GRADIENTS === */
     --gradient-hero: radial-gradient(ellipse at center, hsl(354 93% 60% / 0.08) 0%, transparent 70%);
-    --gradient-cta: linear-gradient(135deg, hsl(320 36% 24%) 0%, hsl(340 48% 20%) 100%);
+    --gradient-cta: linear-gradient(135deg, hsl(320 36% 28%) 0%, hsl(354 93% 60% / 0.3) 100%);
     --gradient-card-glow: 0 12px 40px hsl(100 36% 76% / 0.15);
     --gradient-coral-glow: 0 8px 24px hsl(354 93% 60% / 0.3);
   }
 
+  /* === LIGHT MODE === */
+  @media (prefers-color-scheme: light) {
+    :root:not(.dark) {
+      /* === BACKGROUNDS (Light Mode) === */
+      --background: 0 0% 98%;
+      --bg-secondary: 320 15% 95%;
+      --bg-elevated: 0 0% 100%;
+      --bg-hover: 320 15% 92%;
+
+      /* === TEXT === */
+      --foreground: 320 36% 15%;
+      --text-secondary: 320 20% 40%;
+      --text-muted: 320 15% 55%;
+
+      /* === COMPONENT TOKENS === */
+      --card: 0 0% 100%;
+      --card-foreground: 320 36% 15%;
+      --popover: 0 0% 100%;
+      --popover-foreground: 320 36% 15%;
+      --primary: var(--brand-coral);
+      --primary-foreground: 0 0% 100%;
+      --secondary: var(--brand-purple);
+      --secondary-foreground: 0 0% 100%;
+      --muted: 320 15% 90%;
+      --muted-foreground: 320 20% 40%;
+      --accent: var(--brand-sage);
+      --accent-foreground: 320 36% 15%;
+
+      /* === BORDERS === */
+      --border: 320 20% 85%;
+      --border-emphasis: var(--brand-coral);
+      --input: 320 20% 85%;
+      --divider: 320 20% 85% / 0.5;
+
+      /* === SIDEBAR === */
+      --sidebar-background: 0 0% 98%;
+      --sidebar-foreground: 320 36% 15%;
+      --sidebar-accent: 320 15% 92%;
+      --sidebar-accent-foreground: 320 36% 15%;
+      --sidebar-border: 320 20% 85%;
+
+      /* === CUSTOM GRADIENTS (Light Mode) === */
+      --gradient-hero: radial-gradient(ellipse at center, hsl(354 93% 60% / 0.06) 0%, transparent 70%);
+      --gradient-cta: linear-gradient(135deg, hsl(320 36% 92%) 0%, hsl(354 93% 95%) 100%);
+    }
+  }
+
+  /* Force dark mode with .dark class */
   .dark {
-    /* Dark mode is default for this design */
+    --background: 320 24% 6%;
+    --bg-secondary: 320 20% 9%;
+    --bg-elevated: 320 18% 13%;
+    --bg-hover: 320 16% 16%;
+    --foreground: 0 4% 96%;
+    --text-secondary: var(--brand-blue-gray);
+    --text-muted: 320 10% 40%;
+    --card: 320 18% 13%;
+    --card-foreground: 0 4% 96%;
+    --popover: 320 18% 13%;
+    --popover-foreground: 0 4% 96%;
+    --muted: 320 16% 16%;
+    --muted-foreground: 220 22% 63%;
+    --border: 320 36% 28% / 0.3;
+    --input: 320 36% 28% / 0.3;
+    --divider: 220 22% 63% / 0.15;
+    --sidebar-background: 320 24% 6%;
+    --sidebar-foreground: 0 4% 96%;
+    --sidebar-accent: 320 18% 13%;
+    --sidebar-accent-foreground: 0 4% 96%;
+    --sidebar-border: 320 36% 28% / 0.3;
+    --gradient-hero: radial-gradient(ellipse at center, hsl(354 93% 60% / 0.08) 0%, transparent 70%);
+    --gradient-cta: linear-gradient(135deg, hsl(320 36% 28%) 0%, hsl(354 93% 60% / 0.3) 100%);
   }
 }
 
