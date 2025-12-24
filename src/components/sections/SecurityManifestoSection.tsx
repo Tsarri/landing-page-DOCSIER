@@ -13,7 +13,7 @@ const securityData = [
     icon: AlertTriangle,
     threat: "Empleados",
     problem: "Acceso no autorizado a tus casos",
-    solution: "Seguridad a nivel de fila + Registro de auditoría",
+    solution: "Seguridad a nivel de fila + Historial de acceso y cambios",
     color: "bg-brand-maroon/20",
     iconColor: "text-brand-coral",
   },
