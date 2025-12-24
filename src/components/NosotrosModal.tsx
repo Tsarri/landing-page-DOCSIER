@@ -5,7 +5,6 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
-import { Mail, Phone, MapPin } from "lucide-react";
 
 interface NosotrosModalProps {
   open: boolean;
@@ -15,80 +14,99 @@ interface NosotrosModalProps {
 export const NosotrosModal = ({ open, onOpenChange }: NosotrosModalProps) => {
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="w-full sm:max-w-[450px] bg-bg-elevated border-brand-purple p-8 sm:p-10 overflow-y-auto">
+      <SheetContent side="right" className="w-full sm:max-w-[520px] bg-bg-elevated border-brand-purple p-8 sm:p-10 overflow-y-auto">
         <SheetHeader>
           <SheetTitle className="text-2xl font-bold text-foreground">
-            Quiénes Somos
+            Nosotros
           </SheetTitle>
         </SheetHeader>
 
-        <div className="space-y-6 mt-6">
-          <p className="text-muted-foreground leading-relaxed">
-            DOCSIER fue creado por abogados panameños que perdieron casos por plazos olvidados. 
-            Construimos la herramienta que hubiéramos querido tener.
-          </p>
-
-          <p className="text-foreground font-medium">
-            Nuestra misión: Que ningún abogado pierda un caso por caos administrativo.
-          </p>
+        <div className="space-y-8 mt-6">
+          {/* El Problema Real */}
+          <section className="space-y-4">
+            <h3 className="text-lg font-semibold text-brand-coral">El Problema Real</h3>
+            <p className="text-muted-foreground leading-relaxed">
+              El mayor costo para abogados es el tiempo perdido en trabajo administrativo.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Incapacidad de priorizar trabajo. Una fecha límite se olvida. Un documento se archiva mal. Meses después: perdidas operacionales en la firma.
+            </p>
+            <p className="text-foreground font-medium">
+              No falta mano de obra, falta infraestructura inteligente.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Hemos visto abogados brillantes perder su negocio. Hemos visto familias enteras construidas en firmas legales colapsar por peso muerto administrativo.
+            </p>
+            <p className="text-muted-foreground leading-relaxed italic">
+              Nosotros venimos de familias con ese mismo problema.
+            </p>
+          </section>
 
           <Separator className="bg-muted/20" />
 
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-foreground">
-              Contáctanos
-            </h4>
+          {/* Qué Hacemos */}
+          <section className="space-y-4">
+            <h3 className="text-lg font-semibold text-brand-coral">Qué Hacemos</h3>
+            <p className="text-muted-foreground leading-relaxed">
+              DOCSIER es la infraestructura inteligente que reduce errores y recupera tiempo perdido. Tu equipo administrativo y estratégico.
+            </p>
+            <ul className="space-y-2 text-foreground">
+              <li className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-brand-coral rounded-full"></span>
+                30-50 horas mensuales recuperadas
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-brand-coral rounded-full"></span>
+                Tu IA aprende solo de TUS casos
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-brand-coral rounded-full"></span>
+                Tu información nunca sale de tu control
+              </li>
+            </ul>
+            <p className="text-foreground font-medium">
+              La tecnología es tu clave para desbloquear tu capacidad operativa.
+            </p>
+          </section>
 
-            <div className="space-y-3">
-              <a
-                href="mailto:hola@docsier.com"
-                className="flex items-center gap-3 text-muted-foreground hover:text-brand-coral transition-colors"
-              >
-                <Mail className="w-5 h-5" />
-                <span>hola@docsier.com</span>
-              </a>
+          <Separator className="bg-muted/20" />
 
-              <a
-                href="https://wa.me/50761234567"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-muted-foreground hover:text-brand-coral transition-colors"
-              >
-                <Phone className="w-5 h-5" />
-                <span>+507 6123-4567</span>
-              </a>
-
-              <div className="flex items-center gap-3 text-muted-foreground">
-                <MapPin className="w-5 h-5" />
-                <span>Ciudad de Panamá</span>
+          {/* Nosotros - Team */}
+          <section className="space-y-6">
+            <h3 className="text-lg font-semibold text-brand-coral">Nosotros</h3>
+            
+            <div className="space-y-4">
+              <div>
+                <h4 className="text-foreground font-semibold">Teo Irisarri</h4>
+                <p className="text-brand-sage text-sm font-medium">CTO</p>
+                <p className="text-muted-foreground leading-relaxed mt-2">
+                  Pasó años como paralegal en servicios fiduciarios. Vio de primera mano cómo los abogados pierden tiempo procesando documentos que una máquina podría manejar en segundos. Luego aprendió a desarrollar software.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="text-foreground font-semibold">Julio Luque</h4>
+                <p className="text-brand-sage text-sm font-medium">CEO</p>
+                <p className="text-muted-foreground leading-relaxed mt-2">
+                  Especialista en seguridad de la información. Ha pasado años protegiendo datos sensibles, construyendo sistemas que los gobiernos y los bancos confían. Sabe que para los abogados, la privacidad no es una característica opcional.
+                </p>
               </div>
             </div>
-          </div>
+
+            <p className="text-muted-foreground leading-relaxed italic">
+              Ambos venimos de familias que construyen firmas. Sabemos lo que significa luchar contra el caos administrativo cada día.
+            </p>
+          </section>
 
           <Separator className="bg-muted/20" />
 
-          <div className="flex items-center gap-4">
-            <a
-              href="https://linkedin.com/company/docsier"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-brand-sage transition-colors"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-            </a>
-            <a
-              href="https://twitter.com/docsier"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-brand-sage transition-colors"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </a>
-          </div>
+          {/* Nuestra Misión */}
+          <section className="space-y-3">
+            <h3 className="text-lg font-semibold text-brand-coral">Nuestra Misión</h3>
+            <p className="text-foreground font-medium text-lg">
+              Que abogados sean mejores operadores y empresarios.
+            </p>
+          </section>
         </div>
       </SheetContent>
     </Sheet>
