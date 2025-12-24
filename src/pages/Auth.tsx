@@ -14,6 +14,7 @@ const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [activeTab, setActiveTab] = useState("login");
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,6 +61,23 @@ const Auth = () => {
     setLoading(false);
   };
 
+  const handleResetPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/auth`,
+    });
+
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success("Revisa tu email para restablecer tu contraseña");
+    }
+
+    setLoading(false);
+  };
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
@@ -89,10 +107,20 @@ const Auth = () => {
 
           {/* Auth Card */}
           <div className="bg-card border border-border rounded-lg p-6 shadow-lg">
-            <Tabs defaultValue="login" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-6">
-                <TabsTrigger value="login">Iniciar Sesión</TabsTrigger>
-                <TabsTrigger value="signup">Crear Cuenta</TabsTrigger>
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+              <TabsList className="grid w-full grid-cols-2 mb-6 bg-transparent gap-2 h-auto p-0">
+                <TabsTrigger 
+                  value="login"
+                  className="data-[state=active]:bg-[hsl(var(--brand-maroon))] data-[state=active]:text-white bg-[hsl(var(--brand-maroon)/0.2)] text-[hsl(var(--brand-maroon))] hover:bg-[hsl(var(--brand-maroon)/0.3)] border border-[hsl(var(--brand-maroon)/0.3)] py-2"
+                >
+                  Iniciar Sesión
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="signup"
+                  className="data-[state=active]:bg-[hsl(var(--brand-sage))] data-[state=active]:text-[hsl(var(--background))] bg-[hsl(var(--brand-sage)/0.2)] text-[hsl(var(--brand-sage))] hover:bg-[hsl(var(--brand-sage)/0.3)] border border-[hsl(var(--brand-sage)/0.3)] py-2"
+                >
+                  Crear Cuenta
+                </TabsTrigger>
               </TabsList>
 
               <TabsContent value="login">
@@ -131,11 +159,19 @@ const Auth = () => {
 
                   <Button
                     type="submit"
-                    className="w-full bg-brand-coral hover:bg-brand-coral/90"
+                    className="w-full bg-[hsl(var(--brand-maroon))] hover:bg-[hsl(var(--brand-maroon)/0.9)] text-white"
                     disabled={loading}
                   >
                     {loading ? "Cargando..." : "Iniciar Sesión"}
                   </Button>
+
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab("reset")}
+                    className="w-full text-sm text-muted-foreground hover:text-foreground underline"
+                  >
+                    ¿Olvidaste tu contraseña?
+                  </button>
                 </form>
               </TabsContent>
 
@@ -192,11 +228,51 @@ const Auth = () => {
 
                   <Button
                     type="submit"
-                    className="w-full bg-brand-coral hover:bg-brand-coral/90"
+                    className="w-full bg-[hsl(var(--brand-sage))] hover:bg-[hsl(var(--brand-sage)/0.9)] text-[hsl(var(--background))]"
                     disabled={loading}
                   >
                     {loading ? "Cargando..." : "Crear Cuenta"}
                   </Button>
+                </form>
+              </TabsContent>
+
+              <TabsContent value="reset">
+                <form onSubmit={handleResetPassword} className="space-y-4">
+                  <p className="text-sm text-muted-foreground text-center mb-4">
+                    Ingresa tu email y te enviaremos un enlace para restablecer tu contraseña.
+                  </p>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="reset-email">Email</Label>
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                      <Input
+                        id="reset-email"
+                        type="email"
+                        placeholder="tu@email.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="pl-10"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className="w-full bg-[hsl(var(--brand-maroon))] hover:bg-[hsl(var(--brand-maroon)/0.9)] text-white"
+                    disabled={loading}
+                  >
+                    {loading ? "Enviando..." : "Enviar enlace"}
+                  </Button>
+
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab("login")}
+                    className="w-full text-sm text-muted-foreground hover:text-foreground underline"
+                  >
+                    Volver a iniciar sesión
+                  </button>
                 </form>
               </TabsContent>
             </Tabs>
