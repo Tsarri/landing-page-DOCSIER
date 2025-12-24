@@ -20,19 +20,28 @@ const Auth = () => {
     e.preventDefault();
     setLoading(true);
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
     if (error) {
       toast.error(error.message);
+      setLoading(false);
     } else {
       toast.success("¡Bienvenido!");
-      navigate("/");
+      
+      const session = data.session;
+      
+      if (session) {
+        // Redirect to app with token
+        const appUrl = import.meta.env.VITE_APP_URL || 'https://6d8fce05-d58c-4bbf-ab54-587b996874e1.lovableproject.com';
+        window.location.href = `${appUrl}?token=${session.access_token}`;
+      } else {
+        // Fallback if no session
+        navigate("/");
+      }
     }
-
-    setLoading(false);
   };
 
   const handleSignUp = async (e: React.FormEvent) => {
