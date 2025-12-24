@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { NosotrosModal } from "./NosotrosModal";
 import { CapacityScorecardModal, LeakageCalculatorModal } from "./diagnostics";
