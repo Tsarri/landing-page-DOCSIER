@@ -35,7 +35,7 @@ const Auth = () => {
       
       if (session) {
         // Redirect to app with token
-        const appUrl = import.meta.env.VITE_APP_URL || 'https://6d8fce05-d58c-4bbf-ab54-587b996874e1.lovableproject.com';
+        const appUrl = import.meta.env.VITE_APP_URL || 'http://localhost:8081';
         window.location.href = `${appUrl}?token=${session.access_token}`;
       } else {
         // Fallback if no session
