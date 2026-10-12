@@ -64,5 +64,11 @@ npm run lint     # Run ESLint
 1. Users visit the landing page
 2. Click "Login" to go to `/auth`
 3. Enter credentials (email/password)
-4. On success, redirected to the Agent Dashboard (`VITE_APP_URL`) with auth token
-5. Dashboard validates token and establishes session
+4. On success, redirected to the Agent Dashboard at `VITE_APP_URL#token=<access_token>`
+5. Dashboard reads the token from `window.location.hash`, validates it, establishes the session, and clears the hash
+
+The token is passed in the URL fragment (not the query string) so it is never sent to servers or leaked via logs and `Referer` headers.
+
+## Deployment (Railway)
+
+Vite inlines env vars at build time, so these must be set as Railway service variables **before** building: `VITE_APP_URL`, `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`. Without `VITE_SUPABASE_*` the app fails to start; without `VITE_APP_URL` login shows an error instead of redirecting to localhost.
