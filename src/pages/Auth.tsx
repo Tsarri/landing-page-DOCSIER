@@ -34,9 +34,15 @@ const Auth = () => {
       const session = data.session;
       
       if (session) {
-        // Redirect to app with token
-        const appUrl = import.meta.env.VITE_APP_URL || 'http://localhost:8081';
-        window.location.href = `${appUrl}?token=${session.access_token}`;
+        const appUrl = import.meta.env.VITE_APP_URL || (import.meta.env.DEV ? 'http://localhost:8081' : undefined);
+        if (!appUrl) {
+          toast.error("No se pudo abrir la aplicación. Inténtalo más tarde.");
+          console.error("VITE_APP_URL is not set for this build.");
+          setLoading(false);
+          return;
+        }
+        // Token goes in the fragment so it never reaches servers, logs or Referer headers
+        window.location.href = `${appUrl}#token=${encodeURIComponent(session.access_token)}`;
       } else {
         // Fallback if no session
         navigate("/");
